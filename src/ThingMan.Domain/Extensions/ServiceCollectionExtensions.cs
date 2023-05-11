@@ -11,7 +11,6 @@ public static class ServiceCollectionExtensions
         services.AddAutoMapper(config => { config.AddProfile<DomainMappingProfile>(); });
         services.AddScoped<IDispatcher, Dispatcher>();
         services.AddThingDefs();
-
         return services;
     }
 }

@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/ThingMan.App.props" />
-</Project>

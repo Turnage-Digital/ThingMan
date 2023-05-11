@@ -2,7 +2,7 @@ using Serilog;
 using ThingMan.Core;
 using ThingMan.Core.Events;
 
-namespace ThingMan.Domain.Aggregates.ThingDefs.Events.Handlers;
+namespace ThingMan.Domain.Aggregates.ThingDefs.Events;
 
 internal class ThingDefCreatedEventHandler : IHandleEvent<ThingDefCreatedEvent>
 {

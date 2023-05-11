@@ -12,4 +12,8 @@
         <ProjectReference Include="..\ThingMan.Domain\ThingMan.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Aggregates\" />
+    </ItemGroup>
+
 </Project>

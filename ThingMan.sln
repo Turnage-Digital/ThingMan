@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{970CCF18-89D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3C78815C-5592-4098-A071-C252FBA82AFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.App", "src\ThingMan.App\ThingMan.App.csproj", "{D97DEF79-42A0-4416-B659-6E49D2051D52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.Appl", "src\ThingMan.Appl\ThingMan.Appl.csproj", "{D97DEF79-42A0-4416-B659-6E49D2051D52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.Domain", "src\ThingMan.Domain\ThingMan.Domain.csproj", "{1F63894D-AEAD-433D-8F36-C0482E50887C}"
 EndProject

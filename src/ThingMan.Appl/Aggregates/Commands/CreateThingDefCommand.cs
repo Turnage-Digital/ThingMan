@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using ThingMan.Core.Commands;
 using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
 
-namespace ThingMan.Domain.Aggregates.ThingDefs.Commands;
+namespace ThingMan.Appl.Aggregates.Commands;
 
 public class CreateThingDefCommand : Command
 {

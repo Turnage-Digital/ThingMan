@@ -1,4 +1,4 @@
-namespace ThingMan.App.Extensions;
+namespace ThingMan.Appl.Extensions;
 
 public static class WebApplicationExtensions
 {

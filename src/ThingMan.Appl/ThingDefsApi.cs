@@ -2,13 +2,13 @@ using System.Security.Claims;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using ThingMan.Appl.Aggregates.Commands;
 using ThingMan.Core.Commands;
 using ThingMan.Domain.Aggregates.ThingDefs;
-using ThingMan.Domain.Aggregates.ThingDefs.Commands;
 using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-namespace ThingMan.App;
+namespace ThingMan.Appl;
 
 public static class ThingDefsApi
 {

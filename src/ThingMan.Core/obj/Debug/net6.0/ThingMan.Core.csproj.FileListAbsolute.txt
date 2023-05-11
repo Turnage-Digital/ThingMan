@@ -1,0 +1,12 @@
+/Users/heath/git/thingman/src/ThingMan.Core/bin/Debug/net6.0/ThingMan.Core.deps.json
+/Users/heath/git/thingman/src/ThingMan.Core/bin/Debug/net6.0/ThingMan.Core.dll
+/Users/heath/git/thingman/src/ThingMan.Core/bin/Debug/net6.0/ThingMan.Core.pdb
+/Users/heath/git/thingman/src/ThingMan.Core/obj/Debug/net6.0/ThingMan.Core.csproj.AssemblyReference.cache
+/Users/heath/git/thingman/src/ThingMan.Core/obj/Debug/net6.0/ThingMan.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/heath/git/thingman/src/ThingMan.Core/obj/Debug/net6.0/ThingMan.Core.AssemblyInfoInputs.cache
+/Users/heath/git/thingman/src/ThingMan.Core/obj/Debug/net6.0/ThingMan.Core.AssemblyInfo.cs
+/Users/heath/git/thingman/src/ThingMan.Core/obj/Debug/net6.0/ThingMan.Core.csproj.CoreCompileInputs.cache
+/Users/heath/git/thingman/src/ThingMan.Core/obj/Debug/net6.0/ThingMan.Core.dll
+/Users/heath/git/thingman/src/ThingMan.Core/obj/Debug/net6.0/refint/ThingMan.Core.dll
+/Users/heath/git/thingman/src/ThingMan.Core/obj/Debug/net6.0/ThingMan.Core.pdb
+/Users/heath/git/thingman/src/ThingMan.Core/obj/Debug/net6.0/ref/ThingMan.Core.dll

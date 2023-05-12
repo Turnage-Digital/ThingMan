@@ -5,6 +5,12 @@ namespace ThingMan.Domain.Aggregates.ThingDefs;
 
 public record PropDef
 {
+    public PropDef(string name, PropType type)
+    {
+        Name = name;
+        Type = type;
+    }
+
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public string? Id { get; set; } = null;
@@ -14,10 +20,4 @@ public record PropDef
 
     [Required]
     public PropType Type { get; }
-
-    public PropDef(string name, PropType type)
-    {
-        Name = name;
-        Type = type;
-    }
 }

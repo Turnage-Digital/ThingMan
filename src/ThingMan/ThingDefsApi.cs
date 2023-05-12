@@ -6,7 +6,7 @@ using ThingMan.Appl.Aggregates.Commands;
 using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-namespace ThingMan.Appl;
+namespace ThingMan;
 
 public static class ThingDefsApi
 {
@@ -24,7 +24,9 @@ public static class ThingDefsApi
             ) =>
             {
                 var identity = (ClaimsIdentity)claimsPrincipal.Identity!;
-                command.UserId = identity.Claims.Single(claim => claim.Type == ClaimTypes.NameIdentifier).Value;
+                command.UserId = identity.Claims
+                    .Single(claim => claim.Type == ClaimTypes.NameIdentifier)
+                    .Value;
 
                 var result = await mediator.Send(command);
                 var dto = mapper.Map<ThingDefDto>(result);

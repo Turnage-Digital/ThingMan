@@ -1,7 +1,15 @@
-.idea
 .vscode
+.idea
+.DS_Store
+.vs
+.fleet
 
 bin
 obj
+dist
+node_modules
+keys
 
-.DS_Store
+*.user
+
+thing-man.db*

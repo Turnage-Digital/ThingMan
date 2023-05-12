@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-namespace ThingMan.Appl;
+namespace ThingMan;
 
 public static class UserApi
 {

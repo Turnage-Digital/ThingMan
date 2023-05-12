@@ -19,7 +19,7 @@ internal class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefComm
     }
 
     public string Name => nameof(CreateThingDefCommandHandler);
-    
+
     public async Task<ThingDef> Handle(CreateThingDefCommand request, CancellationToken cancellationToken)
     {
         var retval = ThingDef.Create(request.Name, request.UserId!, Array.Empty<StatusDef>());

@@ -1,9 +1,10 @@
+using MediatR;
 using Newtonsoft.Json;
-using ThingMan.Core.Queries;
+using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
 
 namespace ThingMan.Appl.Aggregates.Queries;
 
-public class GetThingDefByIdQuery : Query
+public class GetThingDefByIdQuery : IRequest<ThingDefDto>
 {
     [JsonProperty("id")]
     public string Id { get; set; } = null!;

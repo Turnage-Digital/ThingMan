@@ -1,16 +1,13 @@
+using MediatR;
 using Serilog;
-using ThingMan.Core;
-using ThingMan.Core.Events;
 
 namespace ThingMan.Domain.Aggregates.ThingDefs.Events;
 
-internal class ThingDefCreatedEventHandler : IHandleEvent<ThingDefCreatedEvent>
+internal class ThingDefCreatedEventHandler : INotificationHandler<ThingDefCreatedEvent>
 {
-    public Task<CoreResponse> HandleAsync(ThingDefCreatedEvent @event)
+    public Task Handle(ThingDefCreatedEvent notification, CancellationToken cancellationToken)
     {
-        Log.Information("Received event: {TraceId} {Event}", @event.TraceId, @event);
-        return Task.FromResult(CoreResponse.Success);
+        Log.Information("Received event: {Event}", nameof(notification));
+        return Task.CompletedTask;
     }
-
-    public string Name => nameof(ThingDefCreatedEventHandler);
 }

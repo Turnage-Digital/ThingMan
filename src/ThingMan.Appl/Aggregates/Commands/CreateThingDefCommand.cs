@@ -1,10 +1,11 @@
+using MediatR;
 using Newtonsoft.Json;
-using ThingMan.Core.Commands;
+using ThingMan.Domain.Aggregates.ThingDefs;
 using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
 
 namespace ThingMan.Appl.Aggregates.Commands;
 
-public class CreateThingDefCommand : Command
+public class CreateThingDefCommand : IRequest<ThingDef>
 {
     [JsonIgnore]
     public string? UserId { get; set; }

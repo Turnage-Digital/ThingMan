@@ -38,7 +38,7 @@ public class ThingDef : Entity, IAggregateRoot
             PropDef2 = propDef2,
             PropDef3 = propDef3
         };
-        retval.AddEvent(new ThingDefCreatedEvent { ThingDef = retval });
+        retval.AddNotification(new ThingDefCreatedEvent { ThingDef = retval });
         return retval;
     }
 }

@@ -1,11 +1,10 @@
 using AutoMapper;
-using ThingMan.Core;
-using ThingMan.Core.Commands;
+using MediatR;
 using ThingMan.Domain.Aggregates.ThingDefs;
 
 namespace ThingMan.Appl.Aggregates.Commands;
 
-internal class CreateThingDefCommandHandler : IHandleCommand<CreateThingDefCommand, ThingDef>
+internal class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefCommand, ThingDef>
 {
     private readonly IMapper _mapper;
     private readonly IThingDefsRepository _thingDefsRepository;
@@ -20,24 +19,11 @@ internal class CreateThingDefCommandHandler : IHandleCommand<CreateThingDefComma
     }
 
     public string Name => nameof(CreateThingDefCommandHandler);
-
-    public async Task<CoreResponse<ThingDef>> HandleAsync(CreateThingDefCommand command)
+    
+    public async Task<ThingDef> Handle(CreateThingDefCommand request, CancellationToken cancellationToken)
     {
-        CoreResponse<ThingDef> retval;
-
-        try
-        {
-            //var props = _mapper.Map<PropDef[]>(command.Props);
-            var thingDef = ThingDef.Create(command.Name, command.UserId!, Array.Empty<StatusDef>());
-            await _thingDefsRepository.CreateAsync(thingDef);
-            retval = CoreResponse<ThingDef>.CreateSuccessfulResponseWithResult(thingDef);
-        }
-        catch (Exception e)
-        {
-            retval = CoreResponse<ThingDef>.CreateFailedResponse(
-                new CoreError { Message = e.Message });
-        }
-
+        var retval = ThingDef.Create(request.Name, request.UserId!, Array.Empty<StatusDef>());
+        await _thingDefsRepository.CreateAsync(retval);
         return retval;
     }
 }

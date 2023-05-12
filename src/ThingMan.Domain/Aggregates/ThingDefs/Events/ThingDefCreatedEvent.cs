@@ -1,9 +1,9 @@
+using MediatR;
 using Newtonsoft.Json;
-using ThingMan.Core.Events;
 
 namespace ThingMan.Domain.Aggregates.ThingDefs.Events;
 
-public class ThingDefCreatedEvent : Event
+public class ThingDefCreatedEvent : INotification
 {
     [JsonProperty("thingDef")]
     public ThingDef ThingDef { get; set; } = null!;

@@ -4,7 +4,7 @@ using ThingMan.Domain.Aggregates.ThingDefs;
 
 namespace ThingMan.Appl.Aggregates.Commands;
 
-internal class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefCommand, ThingDef>
+public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefCommand, ThingDef>
 {
     private readonly IMapper _mapper;
     private readonly IThingDefsRepository _thingDefsRepository;

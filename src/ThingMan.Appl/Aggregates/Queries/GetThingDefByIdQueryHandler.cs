@@ -4,7 +4,7 @@ using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
 
 namespace ThingMan.Appl.Aggregates.Queries;
 
-internal class GetThingDefByIdQueryHandler : IRequestHandler<GetThingDefByIdQuery, ThingDefDto>
+public class GetThingDefByIdQueryHandler : IRequestHandler<GetThingDefByIdQuery, ThingDefDto>
 {
     private readonly IThingDefsView _thingDefsView;
 

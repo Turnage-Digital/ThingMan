@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using ThingMan.Appl.Aggregates.Commands;
+using ThingMan.Appl.Extensions;
+using ThingMan.Domain.Configuration;
+using ThingMan.Domain.Extensions;
 using ThingMan.Domain.SqlDB.Extensions;
-using ThingMan.Identity.SqlDB;
-using ThingMan.Identity.SqlDB.Extensions;
 
 namespace ThingMan;
 
@@ -13,23 +15,11 @@ internal static class HostingExtensions
     {
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
         builder.Services.AddDomainSqlDB(connectionString);
-        builder.Services.AddIdentitySqlDB(connectionString);
 
-        builder.Services
-            .AddDefaultIdentity<IdentityUser>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
+        builder.Services.AddDomain();
+        builder.Services.AddAppl();
 
-        builder.Services
-            .ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath = "/Account/Login";
-                options.LogoutPath = "/Account/Logout";
-            });
-
-        // builder.Services.AddDomain();
-        
         builder.Services.AddAuthorization();
-        builder.Services.AddRazorPages();
 
         if (builder.Environment.IsDevelopment())
         {
@@ -56,26 +46,22 @@ internal static class HostingExtensions
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI();
-            // SeedData.EnsureSeedData(app);
         }
         else
         {
-            app.UseExceptionHandler("/Error");
+            app.UseExceptionHandler();
             app.UseHsts();
         }
-        
+
         app.UseHttpsRedirection();
 
         app.UseStaticFiles();
         app.UseRouting();
 
-        app.UseAuthentication();
         app.UseAuthorization();
 
-        // app.UseApp();
-
-        app.MapRazorPages()
-            .RequireAuthorization();
+        app.MapThingDefsApi();
+        app.MapUserApi();
 
         return app;
     }

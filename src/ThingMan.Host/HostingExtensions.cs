@@ -2,9 +2,8 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using ThingMan.Appl.Extensions;
 using ThingMan.Domain.Extensions;
-using ThingMan.Impl.SqlDB.Extensions;
 using ThingMan.Identity.Impl.SqlDB.Extensions;
-using ServiceCollectionExtensions = ThingMan.Impl.SqlDB.Extensions.ServiceCollectionExtensions;
+using ThingMan.Impl.SqlDB.Extensions;
 
 namespace ThingMan.Host;
 
@@ -46,6 +45,8 @@ internal static class HostingExtensions
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI();
+
+            SeedData.EnsureSeedData(app);
         }
         else
         {

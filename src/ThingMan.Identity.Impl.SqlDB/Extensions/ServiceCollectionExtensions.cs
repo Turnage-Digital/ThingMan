@@ -10,11 +10,8 @@ public static class ServiceCollectionExtensions
         string connectionString
     )
     {
-        var migrationAssemblyName = typeof(ApplicationDbContext).Assembly.FullName!;
-
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlite(connectionString, optionsBuilder =>
-                optionsBuilder.MigrationsAssembly(migrationAssemblyName)));
+            options.UseSqlite(connectionString));
 
         return services;
     }

@@ -11,11 +11,8 @@ public static class ServiceCollectionExtensions
         string connectionString
     )
     {
-        var migrationAssemblyName = typeof(ThingManDbContext).Assembly.FullName!;
-
         services.AddDbContext<ThingManDbContext>(options =>
-            options.UseSqlite(connectionString, optionsBuilder =>
-                optionsBuilder.MigrationsAssembly(migrationAssemblyName)));
+            options.UseSqlite(connectionString));
 
         services.AddRepositories();
         services.AddViews();

@@ -5,15 +5,10 @@ namespace ThingMan.Domain.Aggregates.ThingDefs;
 
 public record StatusDef
 {
-    public StatusDef(string name)
-    {
-        Name = name;
-    }
-
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public string? Id { get; set; } = null;
 
     [Required]
-    public string Name { get; }
+    public string Name { get; set; } = null!;
 }

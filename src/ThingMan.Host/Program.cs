@@ -1,5 +1,5 @@
 using Serilog;
-using ThingMan;
+using ThingMan.Host;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()

@@ -1,19 +1,18 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Serilog;
 using ThingMan.Core;
 using ThingMan.Domain.Aggregates.ThingDefs;
 
-namespace ThingMan.Domain.SqlDB;
+namespace ThingMan.Impl.SqlDB;
 
 public class ThingManDbContext : DbContext
 {
-    private readonly IMediator _dispatcher;
+    private readonly IMediator _mediator;
 
-    public ThingManDbContext(DbContextOptions<ThingManDbContext> options, IMediator dispatcher)
+    public ThingManDbContext(DbContextOptions<ThingManDbContext> options, IMediator mediator)
         : base(options)
     {
-        _dispatcher = dispatcher;
+        _mediator = mediator;
     }
 
     public virtual DbSet<ThingDef> ThingDefs { get; set; } = null!;
@@ -43,7 +42,7 @@ public class ThingManDbContext : DbContext
 
         foreach (var notification in notifications)
         {
-            await _dispatcher.Publish(notification);
+            await _mediator.Publish(notification);
         }
     }
 }

@@ -6,7 +6,7 @@ using ThingMan.Appl.Aggregates.Commands;
 using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-namespace ThingMan;
+namespace ThingMan.Host;
 
 public static class ThingDefsApi
 {

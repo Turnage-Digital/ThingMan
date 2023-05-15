@@ -1,20 +1,20 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using ThingMan.Appl.Aggregates.Commands;
 using ThingMan.Appl.Extensions;
-using ThingMan.Domain.Configuration;
 using ThingMan.Domain.Extensions;
-using ThingMan.Domain.SqlDB.Extensions;
+using ThingMan.Impl.SqlDB.Extensions;
+using ThingMan.Identity.Impl.SqlDB.Extensions;
+using ServiceCollectionExtensions = ThingMan.Impl.SqlDB.Extensions.ServiceCollectionExtensions;
 
-namespace ThingMan;
+namespace ThingMan.Host;
 
 internal static class HostingExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
-        builder.Services.AddDomainSqlDB(connectionString);
+        builder.Services.AddImplSqlDB(connectionString);
+        builder.Services.AddIdentityImplSqlDB(connectionString);
 
         builder.Services.AddDomain();
         builder.Services.AddAppl();
@@ -50,9 +50,9 @@ internal static class HostingExtensions
         else
         {
             app.UseExceptionHandler();
-            app.UseHsts();
         }
 
+        app.UseHsts();
         app.UseHttpsRedirection();
 
         app.UseStaticFiles();

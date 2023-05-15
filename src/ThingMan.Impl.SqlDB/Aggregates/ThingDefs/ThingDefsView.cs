@@ -2,7 +2,7 @@ using AutoMapper;
 using ThingMan.Domain.Aggregates.ThingDefs;
 using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
 
-namespace ThingMan.Domain.SqlDB.Aggregates.ThingDefs;
+namespace ThingMan.Impl.SqlDB.Aggregates.ThingDefs;
 
 internal class ThingDefsView : IThingDefsView
 {

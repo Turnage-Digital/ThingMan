@@ -5,19 +5,13 @@ namespace ThingMan.Domain.Aggregates.ThingDefs;
 
 public record PropDef
 {
-    public PropDef(string name, PropType type)
-    {
-        Name = name;
-        Type = type;
-    }
-
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public string? Id { get; set; } = null;
 
     [Required]
-    public string Name { get; }
+    public string Name { get; set; } = null!;
 
     [Required]
-    public PropType Type { get; }
+    public PropType Type { get; set; }
 }

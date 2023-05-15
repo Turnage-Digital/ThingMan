@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ThingMan.Domain.Aggregates.ThingDefs;
-using ThingMan.Domain.SqlDB.Aggregates.ThingDefs;
+using ThingMan.Impl.SqlDB.Aggregates.ThingDefs;
 
-namespace ThingMan.Domain.SqlDB.Extensions;
+namespace ThingMan.Impl.SqlDB.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddDomainSqlDB(
+    public static IServiceCollection AddImplSqlDB(
         this IServiceCollection services,
         string connectionString
     )

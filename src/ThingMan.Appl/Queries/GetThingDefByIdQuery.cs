@@ -1,8 +1,8 @@
 using MediatR;
 using Newtonsoft.Json;
-using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
+using ThingMan.Domain.Dtos;
 
-namespace ThingMan.Appl.Aggregates.Queries;
+namespace ThingMan.Appl.Queries;
 
 public class GetThingDefByIdQuery : IRequest<ThingDefDto>
 {

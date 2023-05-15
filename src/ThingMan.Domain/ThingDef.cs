@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using ThingMan.Core;
-using ThingMan.Domain.Aggregates.ThingDefs.Events;
+using ThingMan.Domain.Events;
 
-namespace ThingMan.Domain.Aggregates.ThingDefs;
+namespace ThingMan.Domain;
 
 public class ThingDef : Entity, IAggregateRoot
 {

@@ -1,7 +1,7 @@
 using MediatR;
 using Serilog;
 
-namespace ThingMan.Domain.Aggregates.ThingDefs.Events;
+namespace ThingMan.Domain.Events;
 
 internal class ThingDefCreatedEventHandler : INotificationHandler<ThingDefCreatedEvent>
 {

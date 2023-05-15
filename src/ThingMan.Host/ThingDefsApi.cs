@@ -2,8 +2,8 @@ using System.Security.Claims;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using ThingMan.Appl.Aggregates.Commands;
-using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
+using ThingMan.Appl.Commands;
+using ThingMan.Domain.Dtos;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace ThingMan.Host;

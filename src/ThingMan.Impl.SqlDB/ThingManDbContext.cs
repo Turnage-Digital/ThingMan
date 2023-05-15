@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using ThingMan.Core;
-using ThingMan.Domain.Aggregates.ThingDefs;
+using ThingMan.Domain;
 
 namespace ThingMan.Impl.SqlDB;
 

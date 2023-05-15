@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace ThingMan.Domain.Aggregates.ThingDefs.Dtos;
+namespace ThingMan.Domain.Dtos;
 
 public record PropDefDto
 {

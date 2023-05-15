@@ -9,11 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ThingMan.Domain\ThingMan.Domain.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Aggregates\"/>
+        <ProjectReference Include="..\ThingMan.Domain\ThingMan.Domain.csproj" />
     </ItemGroup>
 
 </Project>

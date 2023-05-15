@@ -1,4 +1,4 @@
-namespace ThingMan.Domain.Aggregates.ThingDefs;
+namespace ThingMan.Domain;
 
 public enum PropType
 {

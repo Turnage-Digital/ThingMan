@@ -1,8 +1,8 @@
 using AutoMapper;
 using MediatR;
-using ThingMan.Domain.Aggregates.ThingDefs;
+using ThingMan.Domain;
 
-namespace ThingMan.Appl.Aggregates.Commands;
+namespace ThingMan.Appl.Commands;
 
 public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefCommand, ThingDef>
 {

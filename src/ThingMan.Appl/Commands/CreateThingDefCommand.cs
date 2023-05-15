@@ -1,9 +1,9 @@
 using MediatR;
 using Newtonsoft.Json;
-using ThingMan.Domain.Aggregates.ThingDefs;
-using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
+using ThingMan.Domain;
+using ThingMan.Domain.Dtos;
 
-namespace ThingMan.Appl.Aggregates.Commands;
+namespace ThingMan.Appl.Commands;
 
 public class CreateThingDefCommand : IRequest<ThingDef>
 {

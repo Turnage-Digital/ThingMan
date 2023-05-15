@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ThingMan.Domain.Aggregates.ThingDefs;
+namespace ThingMan.Domain;
 
-public record StatusDef
+public record PropDef
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -11,4 +11,7 @@ public record StatusDef
 
     [Required]
     public string Name { get; set; } = null!;
+
+    [Required]
+    public PropType Type { get; set; }
 }

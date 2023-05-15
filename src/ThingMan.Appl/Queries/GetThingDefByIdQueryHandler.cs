@@ -1,8 +1,8 @@
 using MediatR;
-using ThingMan.Domain.Aggregates.ThingDefs;
-using ThingMan.Domain.Aggregates.ThingDefs.Dtos;
+using ThingMan.Domain;
+using ThingMan.Domain.Dtos;
 
-namespace ThingMan.Appl.Aggregates.Queries;
+namespace ThingMan.Appl.Queries;
 
 public class GetThingDefByIdQueryHandler : IRequestHandler<GetThingDefByIdQuery, ThingDefDto>
 {

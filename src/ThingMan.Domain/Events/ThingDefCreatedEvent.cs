@@ -1,7 +1,7 @@
 using MediatR;
 using Newtonsoft.Json;
 
-namespace ThingMan.Domain.Aggregates.ThingDefs.Events;
+namespace ThingMan.Domain.Events;
 
 public class ThingDefCreatedEvent : INotification
 {

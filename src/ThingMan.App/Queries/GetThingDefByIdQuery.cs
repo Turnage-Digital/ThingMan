@@ -2,7 +2,7 @@ using MediatR;
 using Newtonsoft.Json;
 using ThingMan.Domain.Dtos;
 
-namespace ThingMan.Appl.Queries;
+namespace ThingMan.App.Queries;
 
 public class GetThingDefByIdQuery : IRequest<ThingDefDto>
 {

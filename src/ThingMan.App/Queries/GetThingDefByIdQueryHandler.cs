@@ -2,7 +2,7 @@ using MediatR;
 using ThingMan.Domain;
 using ThingMan.Domain.Dtos;
 
-namespace ThingMan.Appl.Queries;
+namespace ThingMan.App.Queries;
 
 public class GetThingDefByIdQueryHandler : IRequestHandler<GetThingDefByIdQuery, ThingDefDto>
 {

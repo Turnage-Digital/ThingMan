@@ -35,6 +35,7 @@ public class SeedData
                 new(JwtClaimTypes.FamilyName, "Smith"),
                 new(JwtClaimTypes.WebSite, "http://alice.com")
             }).Result;
+            
             if (!result.Succeeded)
             {
                 throw new Exception(result.Errors.First().Description);
@@ -69,6 +70,7 @@ public class SeedData
                 new(JwtClaimTypes.FamilyName, "Smith"),
                 new(JwtClaimTypes.WebSite, "http://bob.com")
             }).Result;
+            
             if (!result.Succeeded)
             {
                 throw new Exception(result.Errors.First().Description);

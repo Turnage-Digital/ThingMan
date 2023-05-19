@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ThingMan.Domain;
 
-namespace ThingMan.Impl.SqlDB.Extensions;
+namespace ThingMan.Infra.SqlDB.Extensions;
 
 public static class ServiceCollectionExtensions
 {

@@ -4,11 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ThingMan.Identity.Impl.SqlDB;
 
 #nullable disable
 
-namespace ThingMan.Identity.Impl.SqlDB.Migrations
+namespace ThingMan.Identity.Infra.SqlDB.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20230515142833_Initial")]

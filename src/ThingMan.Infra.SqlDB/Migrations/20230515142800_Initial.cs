@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ThingMan.Impl.SqlDB.Migrations
+namespace ThingMan.Infra.SqlDB.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

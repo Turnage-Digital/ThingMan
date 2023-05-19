@@ -3,11 +3,11 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ThingMan.Identity.Impl.SqlDB;
+using ThingMan.Identity.Infra.SqlDB;
 
 #nullable disable
 
-namespace ThingMan.Identity.Impl.SqlDB.Migrations
+namespace ThingMan.Identity.Infra.SqlDB.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

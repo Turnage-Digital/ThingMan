@@ -2,7 +2,7 @@ using System.Security.Claims;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using ThingMan.Appl.Commands;
+using ThingMan.App.Commands;
 using ThingMan.Domain.Dtos;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
@@ -35,7 +35,7 @@ public static class ThingDefsApi
             })
             .Produces(Status401Unauthorized)
             .Produces<ThingDefDto>(Status201Created)
-            .Produces<ProblemDetails>(Status500InternalServerError)
+            .Produces(Status500InternalServerError)
             .WithTags("ThingDefs");
 
         return retval;

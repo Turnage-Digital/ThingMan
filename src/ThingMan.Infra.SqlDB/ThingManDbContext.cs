@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ThingMan.Core;
 using ThingMan.Domain;
 
-namespace ThingMan.Impl.SqlDB;
+namespace ThingMan.Infra.SqlDB;
 
 public class ThingManDbContext : DbContext
 {

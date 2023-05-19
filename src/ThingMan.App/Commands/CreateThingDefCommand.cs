@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using ThingMan.Domain;
 using ThingMan.Domain.Dtos;
 
-namespace ThingMan.Appl.Commands;
+namespace ThingMan.App.Commands;
 
 public class CreateThingDefCommand : IRequest<ThingDef>
 {
@@ -11,7 +11,7 @@ public class CreateThingDefCommand : IRequest<ThingDef>
     public string? UserId { get; set; }
 
     [JsonProperty("name")]
-    public string Name { get; } = null!;
+    public string Name { get; set; } = null!;
 
     [JsonProperty("statusDefs")]
     public StatusDefDto[] StatusDefs { get; set; } = null!;

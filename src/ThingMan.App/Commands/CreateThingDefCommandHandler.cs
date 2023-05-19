@@ -2,7 +2,7 @@ using AutoMapper;
 using MediatR;
 using ThingMan.Domain;
 
-namespace ThingMan.Appl.Commands;
+namespace ThingMan.App.Commands;
 
 public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefCommand, ThingDef>
 {

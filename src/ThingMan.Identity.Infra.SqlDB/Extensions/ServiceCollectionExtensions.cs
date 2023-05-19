@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ThingMan.Identity.Impl.SqlDB.Extensions;
+namespace ThingMan.Identity.Infra.SqlDB.Extensions;
 
 public static class ServiceCollectionExtensions
 {

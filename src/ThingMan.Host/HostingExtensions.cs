@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using ThingMan.Appl.Extensions;
+using ThingMan.App.Extensions;
 using ThingMan.Domain.Extensions;
-using ThingMan.Identity.Impl.SqlDB.Extensions;
-using ThingMan.Impl.SqlDB.Extensions;
+using ThingMan.Identity.Infra.SqlDB;
+using ThingMan.Identity.Infra.SqlDB.Extensions;
+using ThingMan.Infra.SqlDB.Extensions;
 
 namespace ThingMan.Host;
 
@@ -15,11 +17,14 @@ internal static class HostingExtensions
         builder.Services.AddImplSqlDB(connectionString);
         builder.Services.AddIdentityImplSqlDB(connectionString);
 
-        builder.Services.AddDomain();
-        builder.Services.AddAppl();
-
+        builder.Services
+            .AddDefaultIdentity<IdentityUser>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
         builder.Services.AddAuthorization();
 
+        builder.Services.AddDomain();
+        builder.Services.AddApp();
+        
         if (builder.Environment.IsDevelopment())
         {
             builder.Services.AddEndpointsApiExplorer()
@@ -59,6 +64,7 @@ internal static class HostingExtensions
         app.UseStaticFiles();
         app.UseRouting();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapThingDefsApi();

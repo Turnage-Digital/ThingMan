@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ThingMan.Identity.Impl.SqlDB.Migrations
+namespace ThingMan.Identity.Infra.SqlDB.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

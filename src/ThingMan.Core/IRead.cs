@@ -1,7 +1,8 @@
 namespace ThingMan.Core;
 
-public interface IRead<TAggregateRoot>
-    where TAggregateRoot : IAggregateRoot
+public interface IRead<T>
 {
-    Task<TAggregateRoot?> ReadAsync(string id);
+    Task<bool> ExistsAsync(string id);
+
+    Task<T?> ReadAsync(string id);
 }

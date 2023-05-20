@@ -1,7 +1,6 @@
 namespace ThingMan.Core;
 
-public interface ICreate<in TAggregateRoot>
-    where TAggregateRoot : IAggregateRoot
+public interface ICreate<in T>
 {
-    Task CreateAsync(TAggregateRoot entity);
+    Task CreateAsync(T entity);
 }

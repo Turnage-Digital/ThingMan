@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using ThingMan.Core;
 using ThingMan.Domain.Events;
 
 namespace ThingMan.Domain;
 
-public class ThingDef : Entity, IAggregateRoot
+public class ThingDef : AggregateRoot
 {
     [Required]
     public string Name { get; set; } = null!;
@@ -14,19 +15,22 @@ public class ThingDef : Entity, IAggregateRoot
 
     public StatusDef[] StatusDefs { get; set; } = null!;
 
-    public PropDef? PropDef1 { get; set; }
+    public NotificationDef[] NotificationDefs { get; set; } = null!;
 
-    public PropDef? PropDef2 { get; set; }
+    public PropertyDef? PropertyDef1 { get; set; }
 
-    public PropDef? PropDef3 { get; set; }
+    public PropertyDef? PropertyDef2 { get; set; }
+
+    public PropertyDef? PropertyDef3 { get; set; }
 
     public static ThingDef Create(
         string name,
         string userId,
         StatusDef[] statuses,
-        PropDef? propDef1 = null,
-        PropDef? propDef2 = null,
-        PropDef? propDef3 = null
+        NotificationDef[] notificationDefs,
+        PropertyDef? propertyDef1 = null,
+        PropertyDef? propertyDef2 = null,
+        PropertyDef? propertyDef3 = null
     )
     {
         var retval = new ThingDef
@@ -34,9 +38,10 @@ public class ThingDef : Entity, IAggregateRoot
             Name = name,
             UserId = userId,
             StatusDefs = statuses,
-            PropDef1 = propDef1,
-            PropDef2 = propDef2,
-            PropDef3 = propDef3
+            NotificationDefs = notificationDefs,
+            PropertyDef1 = propertyDef1,
+            PropertyDef2 = propertyDef2,
+            PropertyDef3 = propertyDef3
         };
         retval.AddNotification(new ThingDefCreatedEvent { ThingDef = retval });
         return retval;

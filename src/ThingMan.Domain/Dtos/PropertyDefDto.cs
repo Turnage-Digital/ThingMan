@@ -2,11 +2,11 @@ using Newtonsoft.Json;
 
 namespace ThingMan.Domain.Dtos;
 
-public record PropDefDto
+public record PropertyDefDto
 {
     [JsonProperty("name")]
     public string Name { get; set; } = null!;
 
-    [JsonProperty("propType")]
-    public string PropType { get; set; } = null!;
+    [JsonProperty("propertyType")]
+    public string PropertyType { get; set; } = null!;
 }

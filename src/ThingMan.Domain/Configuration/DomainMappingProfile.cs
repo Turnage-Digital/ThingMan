@@ -10,7 +10,10 @@ public class DomainMappingProfile : Profile
         CreateMap<ThingDef, ThingDefDto>()
             .ReverseMap();
 
-        CreateMap<PropDef, PropDefDto>()
+        CreateMap<StatusDef, StatusDefDto>()
+            .ReverseMap();
+        
+        CreateMap<PropertyDef, PropertyDefDto>()
             .ReverseMap();
     }
 }

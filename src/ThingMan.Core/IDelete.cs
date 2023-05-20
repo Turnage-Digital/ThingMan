@@ -1,7 +1,6 @@
 namespace ThingMan.Core;
 
-public interface IDelete<in TAggregateRoot>
-    where TAggregateRoot : IAggregateRoot
+public interface IDelete<in T>
 {
-    Task DeleteAsync(TAggregateRoot entity);
+    Task DeleteAsync(T entity);
 }

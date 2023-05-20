@@ -12,11 +12,17 @@ internal class ThingDefsRepository : IThingDefsRepository
         _dbContext = dbContext;
     }
 
+    public async Task<bool> ExistsAsync(string id)
+    {
+        var retval = await _dbContext.ThingDefs
+            .AnyAsync(x => x.Id == id);
+        return retval;
+    }
+
     public async Task<ThingDef?> ReadAsync(string id)
     {
         var retval = await _dbContext.ThingDefs
-            .Where(r => r.Id == id)
-            .SingleOrDefaultAsync();
+            .FindAsync(id);
         return retval;
     }
 

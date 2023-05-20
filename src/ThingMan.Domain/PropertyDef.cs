@@ -1,17 +1,14 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ThingMan.Core;
 
 namespace ThingMan.Domain;
 
-public record PropDef
+public class PropertyDef : Entity
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public string? Id { get; set; } = null;
-
     [Required]
     public string Name { get; set; } = null!;
 
     [Required]
-    public PropType Type { get; set; }
+    public PropertyType Type { get; set; }
 }

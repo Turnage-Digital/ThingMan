@@ -1,6 +1,6 @@
 namespace ThingMan.Core;
 
-public interface IUpdate<in TAggregateRoot>
+public interface IUpdate<in T>
 {
-    Task UpdateAsync(TAggregateRoot entity);
+    Task UpdateAsync(T entity);
 }

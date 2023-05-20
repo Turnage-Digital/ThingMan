@@ -1,3 +1,4 @@
+using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -13,30 +14,40 @@ internal static class HostingExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
-        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
-        builder.Services.AddImplSqlDB(connectionString);
-        builder.Services.AddIdentityImplSqlDB(connectionString);
+        builder.Host.UseSerilog((context, config) => config
+            .WriteTo.Console(outputTemplate:
+                "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
+            .Enrich.FromLogContext()
+            .ReadFrom.Configuration(context.Configuration));
 
-        builder.Services
-            .AddDefaultIdentity<IdentityUser>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
-        builder.Services.AddAuthorization();
-
-        builder.Services.AddDomain();
-        builder.Services.AddApp();
-        
-        if (builder.Environment.IsDevelopment())
+        builder.Host.UseLamar(registry =>
         {
-            builder.Services.AddEndpointsApiExplorer()
-                .AddSwaggerGen(options =>
-                {
-                    options.SwaggerDoc("v1", new OpenApiInfo
+            var connectionString = builder.Configuration
+                .GetConnectionString("DefaultConnection")!;
+            registry.AddImplSqlDB(connectionString);
+            registry.AddIdentityImplSqlDB(connectionString);
+
+            registry
+                .AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            registry.AddAuthorization();
+
+            registry.AddDomain();
+            registry.AddApp();
+
+            if (builder.Environment.IsDevelopment())
+            {
+                registry.AddEndpointsApiExplorer()
+                    .AddSwaggerGen(options =>
                     {
-                        Version = "v1",
-                        Title = "ThingMan"
+                        options.SwaggerDoc("v1", new OpenApiInfo
+                        {
+                            Version = "v1",
+                            Title = "ThingMan"
+                        });
                     });
-                });
-        }
+            }
+        });
 
         return builder.Build();
     }

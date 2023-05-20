@@ -15,13 +15,16 @@ public class CreateThingDefCommand : IRequest<ThingDef>
 
     [JsonProperty("statusDefs")]
     public StatusDefDto[] StatusDefs { get; set; } = null!;
+    
+    [JsonProperty("notificationDefs")]
+    public NotificationDefDto[] NotificationDefs { get; set; } = null!;
 
     [JsonProperty("propDef1")]
-    public PropDefDto? PropDef1 { get; set; }
+    public PropertyDefDto? PropertyDef1 { get; set; }
 
     [JsonProperty("propDef2")]
-    public PropDefDto? PropDef2 { get; set; }
+    public PropertyDefDto? PropertyDef2 { get; set; }
 
     [JsonProperty("propDef3")]
-    public PropDefDto? PropDef3 { get; set; }
+    public PropertyDefDto? PropertyDef3 { get; set; }
 }

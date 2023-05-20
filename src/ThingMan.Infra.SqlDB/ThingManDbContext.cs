@@ -27,7 +27,7 @@ public class ThingManDbContext : DbContext
     private async Task DispatchEventsAsync()
     {
         var entities = ChangeTracker
-            .Entries<Entity>()
+            .Entries<AggregateRoot>()
             .Where(entity => entity.Entity.Notifications != null && entity.Entity.Notifications.Any())
             .ToList();
 

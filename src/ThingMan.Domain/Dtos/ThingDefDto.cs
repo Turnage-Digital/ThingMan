@@ -10,12 +10,12 @@ public record ThingDefDto
     [JsonProperty("name")]
     public string Name { get; set; } = null!;
 
-    [JsonProperty("propDef1")]
-    public PropDefDto? PropDef1 { get; set; }
+    [JsonProperty("propertyDef1")]
+    public PropertyDefDto? PropertyDef1 { get; set; }
 
-    [JsonProperty("propDef2")]
-    public PropDefDto? PropDef2 { get; set; }
+    [JsonProperty("propertyDef2")]
+    public PropertyDefDto? PropertyDef2 { get; set; }
 
-    [JsonProperty("propDef3")]
-    public PropDefDto? PropDef3 { get; set; }
+    [JsonProperty("propertyDef3")]
+    public PropertyDefDto? PropertyDef3 { get; set; }
 }

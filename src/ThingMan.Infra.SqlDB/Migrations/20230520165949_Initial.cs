@@ -11,7 +11,7 @@ namespace ThingMan.Infra.SqlDB.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "PropDef",
+                name: "PropertyDef",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
@@ -20,7 +20,7 @@ namespace ThingMan.Infra.SqlDB.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PropDef", x => x.Id);
+                    table.PrimaryKey("PK_PropertyDef", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,27 +30,47 @@ namespace ThingMan.Infra.SqlDB.Migrations
                     Id = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    PropDef1Id = table.Column<string>(type: "TEXT", nullable: true),
-                    PropDef2Id = table.Column<string>(type: "TEXT", nullable: true),
-                    PropDef3Id = table.Column<string>(type: "TEXT", nullable: true)
+                    PropertyDef1Id = table.Column<string>(type: "TEXT", nullable: true),
+                    PropertyDef2Id = table.Column<string>(type: "TEXT", nullable: true),
+                    PropertyDef3Id = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ThingDefs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ThingDefs_PropDef_PropDef1Id",
-                        column: x => x.PropDef1Id,
-                        principalTable: "PropDef",
+                        name: "FK_ThingDefs_PropertyDef_PropertyDef1Id",
+                        column: x => x.PropertyDef1Id,
+                        principalTable: "PropertyDef",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_ThingDefs_PropDef_PropDef2Id",
-                        column: x => x.PropDef2Id,
-                        principalTable: "PropDef",
+                        name: "FK_ThingDefs_PropertyDef_PropertyDef2Id",
+                        column: x => x.PropertyDef2Id,
+                        principalTable: "PropertyDef",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_ThingDefs_PropDef_PropDef3Id",
-                        column: x => x.PropDef3Id,
-                        principalTable: "PropDef",
+                        name: "FK_ThingDefs_PropertyDef_PropertyDef3Id",
+                        column: x => x.PropertyDef3Id,
+                        principalTable: "PropertyDef",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NotificationDef",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Type = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    UserId = table.Column<string>(type: "TEXT", nullable: true),
+                    ThingDefId = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NotificationDef", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_NotificationDef_ThingDefs_ThingDefId",
+                        column: x => x.ThingDefId,
+                        principalTable: "ThingDefs",
                         principalColumn: "Id");
                 });
 
@@ -73,29 +93,37 @@ namespace ThingMan.Infra.SqlDB.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_NotificationDef_ThingDefId",
+                table: "NotificationDef",
+                column: "ThingDefId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_StatusDef_ThingDefId",
                 table: "StatusDef",
                 column: "ThingDefId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ThingDefs_PropDef1Id",
+                name: "IX_ThingDefs_PropertyDef1Id",
                 table: "ThingDefs",
-                column: "PropDef1Id");
+                column: "PropertyDef1Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ThingDefs_PropDef2Id",
+                name: "IX_ThingDefs_PropertyDef2Id",
                 table: "ThingDefs",
-                column: "PropDef2Id");
+                column: "PropertyDef2Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ThingDefs_PropDef3Id",
+                name: "IX_ThingDefs_PropertyDef3Id",
                 table: "ThingDefs",
-                column: "PropDef3Id");
+                column: "PropertyDef3Id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "NotificationDef");
+
             migrationBuilder.DropTable(
                 name: "StatusDef");
 
@@ -103,7 +131,7 @@ namespace ThingMan.Infra.SqlDB.Migrations
                 name: "ThingDefs");
 
             migrationBuilder.DropTable(
-                name: "PropDef");
+                name: "PropertyDef");
         }
     }
 }

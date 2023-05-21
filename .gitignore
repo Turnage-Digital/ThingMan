@@ -1,15 +1,6 @@
 .vscode
 .idea
-.DS_Store
 .vs
 .fleet
 
-bin
-obj
-dist
-node_modules
-keys
-
-*.user
-
-thing-man.db*
+.DS_Store

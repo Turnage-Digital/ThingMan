@@ -7,12 +7,12 @@ namespace ThingMan.App.Commands;
 
 public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefCommand, ThingDef>
 {
+    private readonly IThingManUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
-    private readonly IThingDefsRepository _thingDefsRepository;
 
-    public CreateThingDefCommandHandler(IThingDefsRepository thingDefsRepository, IMapper mapper)
+    public CreateThingDefCommandHandler(IThingManUnitOfWork unitOfWork, IMapper mapper)
     {
-        _thingDefsRepository = thingDefsRepository;
+        _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
 
@@ -43,7 +43,11 @@ public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefComman
 
         var retval = ThingDef.Create(request.Name, request.UserId!, statusDefs, notificationDefs,
             propertyDef1, propertyDef2, propertyDef3);
-        await _thingDefsRepository.CreateAsync(retval);
+
+        _unitOfWork.BeginTransaction();
+        await _unitOfWork.ThingDefsRepository.CreateAsync(retval, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
         return retval;
     }
 }

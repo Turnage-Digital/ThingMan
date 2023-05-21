@@ -1,36 +1,38 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using ThingMan.App;
 
 namespace ThingMan.Infra.SqlDB;
 
-public interface IUnitOfWork<TContext> : IDisposable
-    where TContext : DbContext
-{
-    Task<int> SaveChangesAsync();
-}
-
-public class UnitOfWork<TContext> : IUnitOfWork<TContext>
+public class UnitOfWork<TContext> : IUnitOfWork
     where TContext : DbContext
 {
     private readonly TContext _dbContext;
+
+    private bool _disposed;
     private IDbContextTransaction _transaction = null!;
 
-    public UnitOfWork(TContext dbContext)
+    protected UnitOfWork(TContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<int> SaveChangesAsync()
+    public void BeginTransaction()
+    {
+        _transaction = _dbContext.Database.BeginTransaction();
+    }
+
+    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         try
         {
-            var result = await _dbContext.SaveChangesAsync();
-            await _transaction.CommitAsync();
+            var result = await _dbContext.SaveChangesAsync(cancellationToken);
+            await _transaction.CommitAsync(cancellationToken);
             return result;
         }
         catch
         {
-            await _transaction.RollbackAsync();
+            await _transaction.RollbackAsync(cancellationToken);
             throw;
         }
         finally
@@ -41,12 +43,21 @@ public class UnitOfWork<TContext> : IUnitOfWork<TContext>
 
     public void Dispose()
     {
-        _transaction.Dispose();
-        _dbContext.Dispose();
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
 
-    public void BeginTransaction()
+    protected virtual void Dispose(bool disposing)
     {
-        _transaction = _dbContext.Database.BeginTransaction();
+        if (!_disposed)
+        {
+            if (disposing)
+            {
+                _transaction.Dispose();
+                _dbContext.Dispose();
+            }
+        }
+
+        _disposed = true;
     }
 }

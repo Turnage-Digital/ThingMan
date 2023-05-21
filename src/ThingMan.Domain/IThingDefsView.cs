@@ -4,5 +4,5 @@ namespace ThingMan.Domain;
 
 public interface IThingDefsView
 {
-    Task<ThingDefDto> GetById(string id);
+    Task<ThingDefDto> GetById(string id, CancellationToken cancellationToken);
 }

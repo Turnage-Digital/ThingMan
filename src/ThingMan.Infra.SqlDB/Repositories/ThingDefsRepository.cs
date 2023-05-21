@@ -12,23 +12,22 @@ internal class ThingDefsRepository : IThingDefsRepository
         _dbContext = dbContext;
     }
 
-    public async Task<bool> ExistsAsync(string id)
+    public async Task<bool> ExistsAsync(string id, CancellationToken cancellationToken = default)
     {
         var retval = await _dbContext.ThingDefs
-            .AnyAsync(x => x.Id == id);
+            .AnyAsync(x => x.Id == id, cancellationToken);
         return retval;
     }
 
-    public async Task<ThingDef?> ReadAsync(string id)
+    public async Task<ThingDef?> ReadAsync(string id, CancellationToken cancellationToken = default)
     {
         var retval = await _dbContext.ThingDefs
-            .FindAsync(id);
+            .FindAsync(id, cancellationToken);
         return retval;
     }
 
-    public async Task CreateAsync(ThingDef entity)
+    public async Task CreateAsync(ThingDef entity, CancellationToken cancellationToken = default)
     {
-        _dbContext.ThingDefs.Add(entity);
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.ThingDefs.AddAsync(entity, cancellationToken);
     }
 }

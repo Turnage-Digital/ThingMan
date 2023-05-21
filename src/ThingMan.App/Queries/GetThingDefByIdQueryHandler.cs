@@ -15,6 +15,6 @@ public class GetThingDefByIdQueryHandler : IRequestHandler<GetThingDefByIdQuery,
 
     public async Task<ThingDefDto> Handle(GetThingDefByIdQuery request, CancellationToken cancellationToken)
     {
-        return await _thingDefsView.GetById(request.Id);
+        return await _thingDefsView.GetById(request.Id, cancellationToken);
     }
 }

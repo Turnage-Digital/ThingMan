@@ -1,7 +1,6 @@
-.idea
 .vscode
-
-bin
-obj
+.idea
+.vs
+.fleet
 
 .DS_Store

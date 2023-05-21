@@ -3,7 +3,7 @@ using MediatR;
 
 namespace ThingMan.Core;
 
-public abstract class AggregateRoot : Entity
+public abstract class AggregateRoot : Entity, IAggregateRoot
 {
     private List<INotification>? _notifications;
 

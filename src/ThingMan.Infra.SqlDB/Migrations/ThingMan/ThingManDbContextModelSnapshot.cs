@@ -6,7 +6,7 @@ using ThingMan.Infra.SqlDB;
 
 #nullable disable
 
-namespace ThingMan.Infra.SqlDB.Migrations
+namespace ThingMan.Infra.SqlDB.Migrations.ThingMan
 {
     [DbContext(typeof(ThingManDbContext))]
     partial class ThingManDbContextModelSnapshot : ModelSnapshot

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ThingMan.Identity.Infra.SqlDB;
+namespace ThingMan.Infra.SqlDB;
 
 public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 {

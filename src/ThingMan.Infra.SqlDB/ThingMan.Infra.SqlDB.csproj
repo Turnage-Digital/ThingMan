@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ThingMan.Domain\ThingMan.Domain.csproj"/>
+        <ProjectReference Include="..\ThingMan.App\ThingMan.App.csproj"/>
     </ItemGroup>
 
 </Project>

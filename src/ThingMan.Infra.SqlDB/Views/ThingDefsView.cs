@@ -2,7 +2,7 @@ using AutoMapper;
 using ThingMan.Domain;
 using ThingMan.Domain.Dtos;
 
-namespace ThingMan.Infra.SqlDB;
+namespace ThingMan.Infra.SqlDB.Views;
 
 internal class ThingDefsView : IThingDefsView
 {

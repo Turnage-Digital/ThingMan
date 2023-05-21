@@ -7,9 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="12.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.5" />
-        <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.5" />
+        <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="12.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.5"/>
+        <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.5"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
@@ -18,14 +18,13 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="7.0.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ThingMan.App\ThingMan.App.csproj" />
-        <ProjectReference Include="..\ThingMan.Infra.SqlDB\ThingMan.Infra.SqlDB.csproj" />
-        <ProjectReference Include="..\ThingMan.Identity.Infra.SqlDB\ThingMan.Identity.Infra.SqlDB.csproj" />
+        <ProjectReference Include="..\ThingMan.App\ThingMan.App.csproj"/>
+        <ProjectReference Include="..\ThingMan.Infra.SqlDB\ThingMan.Infra.SqlDB.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -4,8 +4,7 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using ThingMan.App.Extensions;
 using ThingMan.Domain.Extensions;
-using ThingMan.Identity.Infra.SqlDB;
-using ThingMan.Identity.Infra.SqlDB.Extensions;
+using ThingMan.Infra.SqlDB;
 using ThingMan.Infra.SqlDB.Extensions;
 
 namespace ThingMan.Host;
@@ -24,8 +23,7 @@ internal static class HostingExtensions
         {
             var connectionString = builder.Configuration
                 .GetConnectionString("DefaultConnection")!;
-            registry.AddImplSqlDB(connectionString);
-            registry.AddIdentityImplSqlDB(connectionString);
+            registry.AddSqlDB(connectionString);
 
             registry
                 .AddDefaultIdentity<IdentityUser>()

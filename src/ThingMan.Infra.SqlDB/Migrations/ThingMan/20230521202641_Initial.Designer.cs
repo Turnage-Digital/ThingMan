@@ -7,10 +7,10 @@ using ThingMan.Infra.SqlDB;
 
 #nullable disable
 
-namespace ThingMan.Infra.SqlDB.Migrations
+namespace ThingMan.Infra.SqlDB.Migrations.ThingMan
 {
     [DbContext(typeof(ThingManDbContext))]
-    [Migration("20230520165949_Initial")]
+    [Migration("20230521202641_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

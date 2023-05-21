@@ -8,14 +8,14 @@ public record StatusDefDto
     public string Name { get; set; } = null!;
 }
 
-public class NotificationDefDto  
+public class NotificationDefDto
 {
     [JsonProperty("type")]
     public NotificationType Type { get; set; }
-    
+
     [JsonProperty("isActive")]
     public bool IsActive { get; set; }
-    
+
     [JsonProperty("userId")]
     public string? UserId { get; set; }
 }

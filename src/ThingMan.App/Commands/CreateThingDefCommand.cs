@@ -15,7 +15,7 @@ public class CreateThingDefCommand : IRequest<ThingDef>
 
     [JsonProperty("statusDefs")]
     public StatusDefDto[] StatusDefs { get; set; } = null!;
-    
+
     [JsonProperty("notificationDefs")]
     public NotificationDefDto[] NotificationDefs { get; set; } = null!;
 

@@ -11,10 +11,7 @@ public static class UserApi
         var retval = endpoints
             .MapGroup("/user");
 
-        retval.MapPost("/sign-in", async (
-                SignInInput input,
-                SignInManager<IdentityUser> signInManager
-            ) =>
+        retval.MapPost("/sign-in", async (SignInInput input, SignInManager<IdentityUser> signInManager) =>
             {
                 var result = await signInManager.PasswordSignInAsync(input.Username, input.Password,
                     true, false);
@@ -23,9 +20,7 @@ public static class UserApi
             .Produces<SignInResultDto>()
             .WithTags("User");
 
-        retval.MapGet("/claims", (
-                ClaimsPrincipal claimsPrincipal
-            ) =>
+        retval.MapGet("/claims", (ClaimsPrincipal claimsPrincipal) =>
             {
                 var claims = claimsPrincipal.Claims
                     .Select(x => new ClaimDto { Type = x.Type, Value = x.Value });

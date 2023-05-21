@@ -7,8 +7,8 @@ namespace ThingMan.App.Commands;
 
 public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefCommand, ThingDef>
 {
-    private readonly IThingDefsRepository _thingDefsRepository;
     private readonly IMapper _mapper;
+    private readonly IThingDefsRepository _thingDefsRepository;
 
     public CreateThingDefCommandHandler(IThingDefsRepository thingDefsRepository, IMapper mapper)
     {

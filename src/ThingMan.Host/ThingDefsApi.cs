@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using ThingMan.App.Commands;
 using ThingMan.Domain.Dtos;
 using static Microsoft.AspNetCore.Http.StatusCodes;

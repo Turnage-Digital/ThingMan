@@ -10,34 +10,30 @@ public class UnitOfWork<TContext> : IUnitOfWork
     private readonly TContext _dbContext;
 
     private bool _disposed;
-    private IDbContextTransaction _transaction = null!;
 
     protected UnitOfWork(TContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public void BeginTransaction()
-    {
-        _transaction = _dbContext.Database.BeginTransaction();
-    }
-
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
+        var transaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
+
         try
         {
             var result = await _dbContext.SaveChangesAsync(cancellationToken);
-            await _transaction.CommitAsync(cancellationToken);
+            await transaction.CommitAsync(cancellationToken);
             return result;
         }
         catch
         {
-            await _transaction.RollbackAsync(cancellationToken);
+            await transaction.RollbackAsync(cancellationToken)!;
             throw;
         }
         finally
         {
-            _transaction.Dispose();
+            transaction.Dispose();
         }
     }
 
@@ -53,7 +49,6 @@ public class UnitOfWork<TContext> : IUnitOfWork
         {
             if (disposing)
             {
-                _transaction.Dispose();
                 _dbContext.Dispose();
             }
         }

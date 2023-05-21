@@ -12,9 +12,9 @@ public class ThingDef : AggregateRoot
     [Required]
     public string UserId { get; set; } = null!;
 
-    public StatusDef[] StatusDefs { get; set; } = null!;
+    public ICollection<StatusDef> StatusDefs { get; set; } = null!;
 
-    public NotificationDef[] NotificationDefs { get; set; } = null!;
+    public ICollection<NotificationDef> NotificationDefs { get; set; } = null!;
 
     public PropertyDef? PropertyDef1 { get; set; }
 

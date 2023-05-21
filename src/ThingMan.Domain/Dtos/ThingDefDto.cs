@@ -6,16 +6,25 @@ public record ThingDefDto
 {
     [JsonProperty("id")]
     public string Id { get; set; } = null!;
+    
+    [JsonProperty("userId")]
+    public string? UserId { get; set; }
 
     [JsonProperty("name")]
     public string Name { get; set; } = null!;
 
-    [JsonProperty("propertyDef1")]
+    [JsonProperty("statusDefs")]
+    public StatusDefDto[] StatusDefs { get; set; } = null!;
+
+    [JsonProperty("notificationDefs")]
+    public NotificationDefDto[] NotificationDefs { get; set; } = null!;
+
+    [JsonProperty("propDef1")]
     public PropertyDefDto? PropertyDef1 { get; set; }
 
-    [JsonProperty("propertyDef2")]
+    [JsonProperty("propDef2")]
     public PropertyDefDto? PropertyDef2 { get; set; }
 
-    [JsonProperty("propertyDef3")]
+    [JsonProperty("propDef3")]
     public PropertyDefDto? PropertyDef3 { get; set; }
 }

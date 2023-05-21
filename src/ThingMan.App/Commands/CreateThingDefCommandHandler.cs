@@ -43,8 +43,7 @@ public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefComman
 
         var retval = ThingDef.Create(request.Name, request.UserId!, statusDefs, notificationDefs,
             propertyDef1, propertyDef2, propertyDef3);
-
-        _unitOfWork.BeginTransaction();
+        
         await _unitOfWork.ThingDefsRepository.CreateAsync(retval, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 

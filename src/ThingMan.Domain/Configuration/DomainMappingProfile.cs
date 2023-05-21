@@ -13,6 +13,9 @@ public class DomainMappingProfile : Profile
         CreateMap<StatusDef, StatusDefDto>()
             .ReverseMap();
 
+        CreateMap<NotificationDef, NotificationDefDto>()
+            .ReverseMap();
+
         CreateMap<PropertyDef, PropertyDefDto>()
             .ReverseMap();
     }

@@ -1,7 +1,10 @@
 {
-  "name": "thing-man-client",
+  "name": "thing-man",
   "packageManager": "yarn@3.5.1",
   "devDependencies": {
     "typescript": "^5.0.4"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

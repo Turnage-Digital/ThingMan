@@ -1,5 +1,4 @@
 using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace ThingMan.Host;
@@ -24,7 +23,7 @@ public static class UserApi
 
         return retval;
     }
-    
+
     public record ClaimDto
     {
         public string Type { get; set; } = null!;
@@ -40,7 +39,7 @@ public static class UserApi
 //     })
 //     .Produces<SignInResultDto>()
 //     .WithTags("User");
-        
+
 // public record SignInInput
 // {
 //     public string Username { get; set; } = null!;

@@ -9,7 +9,7 @@ public class SeedData
     public static void EnsureSeedData(WebApplication app)
     {
         Log.Information("Seeding database...");
-        
+
         using var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
 
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
@@ -80,7 +80,7 @@ public class SeedData
         {
             Log.Debug("bob already exists");
         }
-        
+
         Log.Information("Done seeding database. Exiting.");
     }
 

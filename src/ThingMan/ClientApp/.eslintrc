@@ -6,7 +6,11 @@
   "extends": [
     "plugin:@shopify/typescript",
     "plugin:@shopify/react",
-    "plugin:@shopify/prettier",
-    "plugin:tailwindcss/recommended"
-  ]
+    "plugin:@shopify/prettier"
+  ],
+  "rules": {
+    "id-length": "off",
+    "no-process-env": "off",
+    "@shopify/jsx-no-hardcoded-content": "off"
+  }
 }

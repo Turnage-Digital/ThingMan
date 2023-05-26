@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using ThingMan.App;
 
 namespace ThingMan.Infra.SqlDB;

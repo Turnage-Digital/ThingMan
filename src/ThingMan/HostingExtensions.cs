@@ -1,11 +1,11 @@
+using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using ThingMan.Domain.Extensions;
-using ThingMan.Infra.SqlDB;
-using Lamar.Microsoft.DependencyInjection;
 using ThingMan.App.Extensions;
+using ThingMan.Domain.Extensions;
 using ThingMan.Host;
+using ThingMan.Infra.SqlDB;
 using ThingMan.Infra.SqlDB.Extensions;
 
 namespace ThingMan;
@@ -19,7 +19,7 @@ internal static class HostingExtensions
                 "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
             .Enrich.FromLogContext()
             .ReadFrom.Configuration(context.Configuration));
-        
+
         builder.Host.UseLamar(registry =>
         {
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
@@ -31,7 +31,7 @@ internal static class HostingExtensions
 
             registry.AddDomain();
             registry.AddApp();
-            
+
             builder.Services
                 .ConfigureApplicationCookie(options =>
                 {
@@ -70,7 +70,7 @@ internal static class HostingExtensions
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI();
-            
+
             SeedData.EnsureSeedData(app);
         }
         else
@@ -78,7 +78,7 @@ internal static class HostingExtensions
             app.UseExceptionHandler();
             app.UseHsts();
         }
-        
+
         app.UseHttpsRedirection();
 
         app.UseStaticFiles();

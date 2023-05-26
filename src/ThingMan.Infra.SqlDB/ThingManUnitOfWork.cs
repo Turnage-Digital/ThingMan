@@ -8,10 +8,10 @@ public class ThingManUnitOfWork : UnitOfWork<ThingManDbContext>, IThingManUnitOf
 {
     private readonly ThingManDbContext _dbContext;
 
-    public IThingDefsRepository ThingDefsRepository => new ThingDefsRepository(_dbContext);
-
     public ThingManUnitOfWork(ThingManDbContext dbContext) : base(dbContext)
     {
         _dbContext = dbContext;
     }
+
+    public IThingDefsRepository ThingDefsRepository => new ThingDefsRepository(_dbContext);
 }

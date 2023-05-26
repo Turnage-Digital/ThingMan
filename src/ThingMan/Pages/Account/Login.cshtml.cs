@@ -24,8 +24,7 @@ public class Login : PageModel
 
     public string? ReturnUrl { get; set; }
 
-    [BindProperty]
-    public InputModel Input { get; set; } = new();
+    [BindProperty] public InputModel Input { get; set; } = new();
 
     public IActionResult OnGet(string? returnUrl = null)
     {
@@ -56,8 +55,7 @@ public class Login : PageModel
 
     public class InputModel
     {
-        [Required]
-        public string? Username { get; init; }
+        [Required] public string? Username { get; init; }
 
         [Required]
         [DataType(DataType.Password)]

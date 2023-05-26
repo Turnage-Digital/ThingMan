@@ -40,10 +40,6 @@
       <ProjectReference Include="..\ThingMan.Infra.SqlDB\ThingMan.Infra.SqlDB.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="Pages\Home\Error.cshtml" />
-    </ItemGroup>
-
     <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
         <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
         <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />

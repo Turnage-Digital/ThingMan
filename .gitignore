@@ -4,3 +4,10 @@
 .fleet
 
 .DS_Store
+
+bin
+obj
+
+*.user
+
+thing-man.db*

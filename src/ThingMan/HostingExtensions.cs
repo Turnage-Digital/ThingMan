@@ -22,31 +22,32 @@ internal static class HostingExtensions
 
         builder.Host.UseLamar(registry =>
         {
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
-            builder.Services.AddSqlDB(connectionString);
+            var connectionString = builder.Configuration
+                .GetConnectionString("DefaultConnection")!;
+            registry.AddSqlDB(connectionString);
 
-            builder.Services
+            registry
                 .AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             registry.AddDomain();
             registry.AddApp();
 
-            builder.Services
+            registry
                 .ConfigureApplicationCookie(options =>
                 {
                     options.LoginPath = "/Account/Login";
                     options.LogoutPath = "/Account/Logout";
                 });
 
-            builder.Services.AddDomain();
+            registry.AddDomain();
 
-            builder.Services.AddAuthorization();
-            builder.Services.AddRazorPages();
+            registry.AddAuthorization();
+            registry.AddRazorPages();
 
             if (builder.Environment.IsDevelopment())
             {
-                builder.Services.AddEndpointsApiExplorer()
+                registry.AddEndpointsApiExplorer()
                     .AddSwaggerGen(options =>
                     {
                         options.SwaggerDoc("v1", new OpenApiInfo

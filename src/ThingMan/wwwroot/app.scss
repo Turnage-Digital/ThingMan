@@ -1,0 +1,97 @@
+@use "@material/theme/index" with (
+  $primary: #00afac,
+  $on-primary: #fff,
+);
+@use "@material/typography/mdc-typography";
+@use "@material/button/styles";
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield";
+
+@include textfield.core-styles;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "Roboto", serif;
+  margin: 0;
+}
+
+input:-webkit-autofill {
+  transition: background-color 50000s ease-in-out 0s, color 50000s ease-in-out 0s
+}
+
+input:-webkit-autofill:focus {
+  transition: background-color 50000s ease-in-out 0s, color 50000s ease-in-out 0s
+}
+
+input:-webkit-autofill:hover {
+  transition: background-color 50000s ease-in-out 0s, color 50000s ease-in-out 0s
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: #000;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #000;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.stack {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 475px;
+}
+
+.stack .brand {
+  margin-bottom: 1rem;
+  height: 75px;
+}
+
+.stack .brand img {
+  height: 100%;
+  width: auto;
+}
+
+.stack .subtitle {
+  margin-bottom: 1rem;
+}
+
+.stack form {
+  margin-bottom: 2rem;
+}
+
+.stack .textfield {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.stack .link {
+  padding-top: 1rem;
+  float: right;
+}
+
+.stack .errors {
+  color: #ff0000;
+}
+

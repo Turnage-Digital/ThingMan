@@ -11,14 +11,9 @@ namespace ThingMan.Pages.Account;
 public class Login : PageModel
 {
     private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly UserManager<IdentityUser> _userManager;
 
-    public Login(
-        UserManager<IdentityUser> userManager,
-        SignInManager<IdentityUser> signInManager
-    )
+    public Login(SignInManager<IdentityUser> signInManager)
     {
-        _userManager = userManager;
         _signInManager = signInManager;
     }
 

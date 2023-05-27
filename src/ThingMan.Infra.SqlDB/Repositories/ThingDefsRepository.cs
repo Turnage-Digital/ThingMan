@@ -22,7 +22,7 @@ internal class ThingDefsRepository : IThingDefsRepository
     public async Task<ThingDef?> ReadAsync(string id, CancellationToken cancellationToken = default)
     {
         var retval = await _dbContext.ThingDefs
-            .FindAsync(id, cancellationToken);
+            .FindAsync(new object?[] { id }, cancellationToken);
         return retval;
     }
 

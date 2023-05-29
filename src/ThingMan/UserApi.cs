@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace ThingMan.Host;
@@ -9,6 +10,15 @@ public static class UserApi
     {
         var retval = endpoints
             .MapGroup("/user");
+
+        retval.MapPost("/sign-in", async (SignInInput input, SignInManager<IdentityUser> signInManager) =>
+            {
+                var result = await signInManager.PasswordSignInAsync(input.Username, input.Password,
+                    true, false);
+                return Results.Json(new SignInResultDto { Succeeded = result.Succeeded });
+            })
+            .Produces<SignInResultDto>()
+            .WithTags("User");
 
         retval.MapGet("/claims", (ClaimsPrincipal claimsPrincipal) =>
             {
@@ -29,24 +39,15 @@ public static class UserApi
         public string Type { get; set; } = null!;
         public object Value { get; set; } = null!;
     }
+
+    public record SignInInput
+    {
+        public string Username { get; set; } = null!;
+        public string Password { get; set; } = null!;
+    }
+
+    public record SignInResultDto
+    {
+        public bool Succeeded { get; set; }
+    }
 }
-
-// retval.MapPost("/sign-in", async (SignInInput input, SignInManager<IdentityUser> signInManager) =>
-//     {
-//         var result = await signInManager.PasswordSignInAsync(input.Username, input.Password,
-//             true, false);
-//         return Results.Json(new SignInResultDto { Succeeded = result.Succeeded });
-//     })
-//     .Produces<SignInResultDto>()
-//     .WithTags("User");
-
-// public record SignInInput
-// {
-//     public string Username { get; set; } = null!;
-//     public string Password { get; set; } = null!;
-// }
-//
-// public record SignInResultDto
-// {
-//     public bool Succeeded { get; set; }
-// }

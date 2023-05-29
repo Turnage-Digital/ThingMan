@@ -40,6 +40,13 @@
         <ProjectReference Include="..\ThingMan.Infra.SqlDB\ThingMan.Infra.SqlDB.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\js\changePassword.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\forgotPassword.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\login.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\resetPassword.js" />
+    </ItemGroup>
+
     <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
         <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
         <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />

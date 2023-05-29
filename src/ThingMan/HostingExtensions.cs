@@ -43,7 +43,6 @@ internal static class HostingExtensions
             registry.AddDomain();
 
             registry.AddAuthorization();
-            registry.AddRazorPages();
 
             if (builder.Environment.IsDevelopment())
             {
@@ -87,9 +86,6 @@ internal static class HostingExtensions
 
         app.UseAuthentication();
         app.UseAuthorization();
-
-        app.MapRazorPages()
-            .RequireAuthorization();
 
         app.MapThingDefsApi();
         app.MapUserApi();

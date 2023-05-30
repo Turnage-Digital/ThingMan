@@ -4,7 +4,6 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using ThingMan.App.Extensions;
 using ThingMan.Domain.Extensions;
-using ThingMan.Host;
 using ThingMan.Infra.SqlDB;
 using ThingMan.Infra.SqlDB.Extensions;
 

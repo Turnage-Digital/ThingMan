@@ -4,3 +4,11 @@
 .fleet
 
 .DS_Store
+
+bin
+obj
+node_modules
+
+*.user
+
+thing-man.db*

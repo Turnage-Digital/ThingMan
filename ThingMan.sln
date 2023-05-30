@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{40B92131-9C06-49A0-8419-01ABB3AF7356}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+		.gitignore = .gitignore
+		colors.png = colors.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{970CCF18-89D6-4534-8F9D-D5FCCCF3BB16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.Core", "src\ThingMan.Core\ThingMan.Core.csproj", "{80EDBA2A-26D9-46BD-A13A-D2142C93020C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.Domain", "src\ThingMan.Domain\ThingMan.Domain.csproj", "{3DCFFEA6-C512-4E4A-A02A-91BBE5D37BD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.Infra.SqlDB", "src\ThingMan.Infra.SqlDB\ThingMan.Infra.SqlDB.csproj", "{E45225AA-0B4A-4C5E-AFBE-C9FB6994E47F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.App", "src\ThingMan.App\ThingMan.App.csproj", "{EB38439C-9D25-455B-90C7-24B6DF369AA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan", "src\ThingMan\ThingMan.csproj", "{E73960C1-4AAC-4B6E-9AE3-8A74C5CFF4FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{80EDBA2A-26D9-46BD-A13A-D2142C93020C} = {970CCF18-89D6-4534-8F9D-D5FCCCF3BB16}
+		{3DCFFEA6-C512-4E4A-A02A-91BBE5D37BD6} = {970CCF18-89D6-4534-8F9D-D5FCCCF3BB16}
+		{E45225AA-0B4A-4C5E-AFBE-C9FB6994E47F} = {970CCF18-89D6-4534-8F9D-D5FCCCF3BB16}
+		{EB38439C-9D25-455B-90C7-24B6DF369AA4} = {970CCF18-89D6-4534-8F9D-D5FCCCF3BB16}
+		{E73960C1-4AAC-4B6E-9AE3-8A74C5CFF4FE} = {970CCF18-89D6-4534-8F9D-D5FCCCF3BB16}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80EDBA2A-26D9-46BD-A13A-D2142C93020C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80EDBA2A-26D9-46BD-A13A-D2142C93020C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80EDBA2A-26D9-46BD-A13A-D2142C93020C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80EDBA2A-26D9-46BD-A13A-D2142C93020C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DCFFEA6-C512-4E4A-A02A-91BBE5D37BD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DCFFEA6-C512-4E4A-A02A-91BBE5D37BD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DCFFEA6-C512-4E4A-A02A-91BBE5D37BD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DCFFEA6-C512-4E4A-A02A-91BBE5D37BD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45225AA-0B4A-4C5E-AFBE-C9FB6994E47F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45225AA-0B4A-4C5E-AFBE-C9FB6994E47F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45225AA-0B4A-4C5E-AFBE-C9FB6994E47F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45225AA-0B4A-4C5E-AFBE-C9FB6994E47F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB38439C-9D25-455B-90C7-24B6DF369AA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB38439C-9D25-455B-90C7-24B6DF369AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB38439C-9D25-455B-90C7-24B6DF369AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB38439C-9D25-455B-90C7-24B6DF369AA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E73960C1-4AAC-4B6E-9AE3-8A74C5CFF4FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E73960C1-4AAC-4B6E-9AE3-8A74C5CFF4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E73960C1-4AAC-4B6E-9AE3-8A74C5CFF4FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E73960C1-4AAC-4B6E-9AE3-8A74C5CFF4FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

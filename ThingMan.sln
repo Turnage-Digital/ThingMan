@@ -7,7 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{40
 	ProjectSection(SolutionItems) = preProject
 		nuget.config = nuget.config
 		.gitignore = .gitignore
-		colors.png = colors.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{970CCF18-89D6-4534-8F9D-D5FCCCF3BB16}"

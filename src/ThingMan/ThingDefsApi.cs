@@ -5,7 +5,7 @@ using ThingMan.App.Commands;
 using ThingMan.Domain.Dtos;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-namespace ThingMan.Host;
+namespace ThingMan;
 
 public static class ThingDefsApi
 {

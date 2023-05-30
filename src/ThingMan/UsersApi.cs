@@ -2,14 +2,14 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-namespace ThingMan.Host;
+namespace ThingMan;
 
-public static class UserApi
+public static class UsersApi
 {
     public static IEndpointConventionBuilder MapUserApi(this IEndpointRouteBuilder endpoints)
     {
         var retval = endpoints
-            .MapGroup("/user");
+            .MapGroup("/users");
 
         retval.MapPost("/sign-in", async (SignInInput input, SignInManager<IdentityUser> signInManager) =>
             {
@@ -17,8 +17,7 @@ public static class UserApi
                     true, false);
                 return Results.Json(new SignInResultDto { Succeeded = result.Succeeded });
             })
-            .Produces<SignInResultDto>()
-            .WithTags("User");
+            .Produces<SignInResultDto>();
 
         retval.MapGet("/claims", (ClaimsPrincipal claimsPrincipal) =>
             {
@@ -28,16 +27,9 @@ public static class UserApi
             })
             .RequireAuthorization()
             .Produces(Status401Unauthorized)
-            .Produces<ClaimDto[]>()
-            .WithTags("User");
+            .Produces<ClaimDto[]>();
 
         return retval;
-    }
-
-    public record ClaimDto
-    {
-        public string Type { get; set; } = null!;
-        public object Value { get; set; } = null!;
     }
 
     public record SignInInput
@@ -49,5 +41,11 @@ public static class UserApi
     public record SignInResultDto
     {
         public bool Succeeded { get; set; }
+    }
+
+    public record ClaimDto
+    {
+        public string Type { get; set; } = null!;
+        public object Value { get; set; } = null!;
     }
 }

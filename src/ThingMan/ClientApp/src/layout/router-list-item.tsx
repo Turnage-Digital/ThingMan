@@ -1,4 +1,9 @@
-import { ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import {
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import React, { FC, ReactElement } from "react";
 import { Link, LinkProps } from "react-router-dom";
 
@@ -23,15 +28,14 @@ const RouterListItem: FC<Props> = ({
     Omit<LinkProps, "innerRef" | "to">
   >((props, ref) => <Link ref={ref} to={to} {...props} />);
   return (
-    <ListItem
-      button
+    <ListItemButton
       component={forwardRef}
       selected={selected}
       onClick={() => onClick()}
     >
       <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText primary={primary} />
-    </ListItem>
+    </ListItemButton>
   );
 };
 

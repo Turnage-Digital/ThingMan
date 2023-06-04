@@ -1,21 +1,17 @@
 import { Stack } from "@mui/material";
-import React, { FC, useCallback, useEffect } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 import { SignIn, useAuth } from "./hooks";
 import { ContentSection, TopSection, SideSection } from "./layout";
 import Loading from "./loading";
 
-const navigation: { name: string; href: string }[] = [
-  { name: "Dashboard", href: "/" },
-];
-
 const Shell: FC = () => {
   const { loading, signedIn } = useAuth();
   const location = useLocation();
 
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [selectedRoute, setSelectedRoute] = React.useState("");
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [selectedRoute, setSelectedRoute] = useState("");
 
   function handleDrawerToggle() {
     setDrawerOpen(!drawerOpen);

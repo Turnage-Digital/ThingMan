@@ -1,38 +1,8 @@
 import React, { FC } from "react";
-import { Drawer, Hidden, List, ListSubheader } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box, Drawer, Hidden, List } from "@mui/material";
 import { Dashboard } from "@mui/icons-material";
 
 import RouterListItem from "../router-list-item";
-
-const PREFIX = "side-section";
-const classes = {
-  drawer: `${PREFIX}-drawer`,
-  drawerPaper: `${PREFIX}-drawerPaper`,
-  drawerHeader: `${PREFIX}-drawerHeader`,
-  title: `${PREFIX}-title`,
-};
-const Root = styled("div")(({ theme }) => {
-  const drawerWidth = 240;
-  return {
-    [`.${classes.drawer}`]: {
-      width: drawerWidth,
-    },
-    [`& .${classes.drawerPaper}`]: {
-      width: drawerWidth,
-    },
-    [`& .${classes.drawerHeader}`]: {
-      display: "flex",
-      alignItems: "center",
-      padding: theme.spacing(0, 1),
-      ...theme.mixins.toolbar,
-    },
-    [`& .${classes.title}`]: {
-      flexGrow: 1,
-      padding: theme.spacing(1, 0, 0, 1),
-    },
-  };
-});
 
 interface Props {
   drawerOpen: boolean;
@@ -47,11 +17,24 @@ const SideSection: FC<Props> = ({
   selectedRoute,
   onRouteSelected,
 }: Props) => {
+  const drawerWidth = 240;
   const drawer = (
     <>
-      <div className={classes.drawerHeader}>
-        <div className={classes.title}>Thing Man</div>
-      </div>
+      <Box
+        sx={(theme) => ({
+          width: drawerWidth,
+          display: "flex",
+          alignItems: "center",
+          padding: theme.spacing(0, 1),
+          ...theme.mixins.toolbar,
+        })}
+      >
+        <Box
+          sx={(theme) => ({ flexGrow: 1, padding: theme.spacing(1, 0, 0, 1) })}
+        >
+          Thing Man
+        </Box>
+      </Box>
       <List>
         <RouterListItem
           to="/"
@@ -67,34 +50,20 @@ const SideSection: FC<Props> = ({
   return (
     <>
       <Hidden smDown>
-        <Root>
-          <Drawer
-            className={classes.drawer}
-            variant="permanent"
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            anchor="left"
-          >
-            {drawer}
-          </Drawer>
-        </Root>
+        <Drawer sx={{ width: drawerWidth }} variant="permanent" anchor="left">
+          {drawer}
+        </Drawer>
       </Hidden>
       <Hidden smUp>
-        <Root>
-          <Drawer
-            className={classes.drawer}
-            variant="temporary"
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            anchor="left"
-            open={drawerOpen}
-            onClose={onDrawerToggle}
-          >
-            {drawer}
-          </Drawer>
-        </Root>
+        <Drawer
+          sx={{ width: drawerWidth }}
+          variant="temporary"
+          anchor="left"
+          open={drawerOpen}
+          onClose={onDrawerToggle}
+        >
+          {drawer}
+        </Drawer>
       </Hidden>
     </>
   );

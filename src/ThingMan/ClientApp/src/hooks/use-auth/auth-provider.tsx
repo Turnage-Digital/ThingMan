@@ -8,38 +8,42 @@ import AuthContext from "./auth-context";
 type Props = PropsWithChildren<{ userApi: IUserApi }>;
 
 const AuthProvider: FC<Props> = ({ children, userApi }) => {
-  const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [signedIn, setSignedIn] = useState<boolean>(false);
   const [claims, setClaims] = useState<ClaimDto[]>([]);
-  const [error, setError] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<string | null>(null);
 
   const authContextValue = useMemo(() => {
     const signInLocal = async (username: string, password: string) => {
+      setLoading(true);
       const result = await userApi.signIn(username, password);
       if (result.succeeded) {
         const claims = await userApi.getClaims();
-
         setClaims(claims);
-        setIsSignedIn(result.succeeded);
+        setSignedIn(result.succeeded);
       } else {
         setError("Invalid username or password.");
       }
+      setLoading(false);
     };
 
     const signOutLocal = async () => {
+      setLoading(true);
       await userApi.signOut();
-
       setClaims([]);
-      setIsSignedIn(false);
+      setSignedIn(false);
+      setLoading(false);
     };
 
     return {
-      isSignedIn,
+      loading,
+      signedIn,
       claims,
       signIn: signInLocal,
       signOut: signOutLocal,
       error,
     };
-  }, [userApi, isSignedIn, claims, error]);
+  }, [userApi, loading, signedIn, claims, error]);
 
   return (
     <AuthContext.Provider value={authContextValue}>

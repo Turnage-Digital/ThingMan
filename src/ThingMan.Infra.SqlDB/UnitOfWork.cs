@@ -21,9 +21,9 @@ public class UnitOfWork<TContext> : IUnitOfWork
 
         try
         {
-            var result = await _dbContext.SaveChangesAsync(cancellationToken);
+            var retval = await _dbContext.SaveChangesAsync(cancellationToken);
             await transaction.CommitAsync(cancellationToken);
-            return result;
+            return retval;
         }
         catch
         {

@@ -1,13 +1,12 @@
 import React, { FC } from "react";
 import { Outlet } from "react-router-dom";
 
-import { SignIn } from "./auth";
-import useAuth from "./auth/use-auth";
+import { SignIn, useAuth } from "./hooks";
 
 const Shell: FC = () => {
-  const { isLoggedIn } = useAuth();
+  const { isSignedIn } = useAuth();
 
-  if (!isLoggedIn) {
+  if (!isSignedIn) {
     return <SignIn />;
   }
 

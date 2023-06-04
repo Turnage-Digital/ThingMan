@@ -1,5 +1,6 @@
 import React, { FC, FormEvent } from "react";
 import {
+  Alert,
   Avatar,
   Box,
   Button,
@@ -12,25 +13,24 @@ import { LockOutlined } from "@mui/icons-material";
 
 import useAuth from "./use-auth";
 
-const SignIn: FC = () => {
-  const { login } = useAuth();
+const SignInForm: FC = () => {
+  const { signIn, error } = useAuth();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      username: data.get("username"),
-      password: data.get("password"),
-    });
+
+    const username = data.get("username")?.toString();
+    const password = data.get("password")?.toString();
+
+    if (username && password && signIn) {
+      await signIn(username, password);
+    }
   };
 
   return (
     <Container component="main" maxWidth="xs" sx={{ mt: 8 }}>
       <Stack spacing={2} alignItems="center">
-        <Avatar sx={{ m: 1, bgcolor: "primary.main", color: "white" }}>
-          <LockOutlined />
-        </Avatar>
         <Typography variant="h5">Sign in</Typography>
 
         <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
@@ -43,6 +43,7 @@ const SignIn: FC = () => {
             label="Username"
             autoComplete="username"
           />
+
           <TextField
             margin="normal"
             required
@@ -53,18 +54,26 @@ const SignIn: FC = () => {
             type="password"
             autoComplete="current-password"
           />
+
           <Button
             type="submit"
-            fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            size="large"
+            fullWidth
+            sx={{ my: 2 }}
           >
             Sign In
           </Button>
         </Box>
+
+        {error && (
+          <Alert sx={{ mt: 2 }} severity="error">
+            {error}
+          </Alert>
+        )}
       </Stack>
     </Container>
   );
 };
 
-export default SignIn;
+export default SignInForm;

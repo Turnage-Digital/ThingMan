@@ -10,78 +10,73 @@ public class SeedData
     {
         Log.Information("Seeding database...");
 
-        using var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
-
-        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-        var alice = userManager.FindByNameAsync("alice").Result;
-        if (alice == null)
+        using var scope = app.Services
+            .GetRequiredService<IServiceScopeFactory>()
+            .CreateScope();
+        var userManager = scope.ServiceProvider
+            .GetRequiredService<UserManager<IdentityUser>>();
+        
+        var heath = userManager.FindByNameAsync("heath").Result;
+        if (heath == null)
         {
-            alice = new IdentityUser
-            {
-                UserName = "alice",
-                Email = "AliceSmith@email.com",
-                EmailConfirmed = true
-            };
-            var result = userManager.CreateAsync(alice, "Pass123$").Result;
-            if (!result.Succeeded)
-            {
-                throw new Exception(result.Errors.First().Description);
-            }
-
-            result = userManager.AddClaimsAsync(alice, new Claim[]
-            {
-                new(JwtClaimTypes.Name, "Alice Smith"),
-                new(JwtClaimTypes.GivenName, "Alice"),
-                new(JwtClaimTypes.FamilyName, "Smith"),
-                new(JwtClaimTypes.WebSite, "http://alice.com")
-            }).Result;
-            if (!result.Succeeded)
-            {
-                throw new Exception(result.Errors.First().Description);
-            }
-
-            Log.Debug("alice created");
+            CreateUser(userManager, "heath", "heath@email.com", "Pass123$", "Heath Turnage", 
+                "Heath", "Turnage", "https://thingman.com");
         }
         else
         {
-            Log.Debug("alice already exists");
+            Log.Debug("heath already exists");
         }
 
-        var bob = userManager.FindByNameAsync("bob").Result;
-        if (bob == null)
+        var erika = userManager.FindByNameAsync("erika").Result;
+        if (erika == null)
         {
-            bob = new IdentityUser
-            {
-                UserName = "bob",
-                Email = "BobSmith@email.com",
-                EmailConfirmed = true
-            };
-            var result = userManager.CreateAsync(bob, "Pass123$").Result;
-            if (!result.Succeeded)
-            {
-                throw new Exception(result.Errors.First().Description);
-            }
-
-            result = userManager.AddClaimsAsync(bob, new Claim[]
-            {
-                new(JwtClaimTypes.Name, "Bob Smith"),
-                new(JwtClaimTypes.GivenName, "Bob"),
-                new(JwtClaimTypes.FamilyName, "Smith"),
-                new(JwtClaimTypes.WebSite, "http://bob.com")
-            }).Result;
-            if (!result.Succeeded)
-            {
-                throw new Exception(result.Errors.First().Description);
-            }
-
-            Log.Debug("bob created");
+            CreateUser(userManager, "erika", "erika@email.com", "Pass123$", "Erika Turnage", 
+                "Erika", "Turnage", "https://thingman.com");
         }
         else
         {
-            Log.Debug("bob already exists");
+            Log.Debug("erika already exists");
         }
 
         Log.Information("Done seeding database. Exiting.");
+    }
+    
+    private static void CreateUser(
+        UserManager<IdentityUser> userManager,
+        string userName, 
+        string email, 
+        string password, 
+        string name, 
+        string givenName, 
+        string familyName, 
+        string website)
+    {
+        var user = new IdentityUser
+        {
+            UserName = userName,
+            Email = email,
+            EmailConfirmed = true
+        };
+
+        var result = userManager.CreateAsync(user, password).Result;
+        if (!result.Succeeded)
+        {
+            throw new Exception(result.Errors.First().Description);
+        }
+
+        result = userManager.AddClaimsAsync(user, new Claim[]
+        {
+            new(JwtClaimTypes.Name, name),
+            new(JwtClaimTypes.GivenName, givenName),
+            new(JwtClaimTypes.FamilyName, familyName),
+            new(JwtClaimTypes.WebSite, website)
+        }).Result;
+        if (!result.Succeeded)
+        {
+            throw new Exception(result.Errors.First().Description);
+        }
+
+        Log.Debug($"{userName} created");
     }
 
     private static class JwtClaimTypes

@@ -9,7 +9,8 @@ public static class UsersApi
     public static IEndpointConventionBuilder MapUserApi(this IEndpointRouteBuilder endpoints)
     {
         var retval = endpoints
-            .MapGroup("/users");
+            .MapGroup("/api/users")
+            .WithTags("Users");
 
         retval.MapPost("/sign-in", async (SignInInput input, SignInManager<IdentityUser> signInManager) =>
             {
@@ -32,18 +33,18 @@ public static class UsersApi
         return retval;
     }
 
-    public record SignInInput
+    private record SignInInput
     {
         public string Username { get; set; } = null!;
         public string Password { get; set; } = null!;
     }
 
-    public record SignInResultDto
+    private record SignInResultDto
     {
         public bool Succeeded { get; set; }
     }
 
-    public record ClaimDto
+    private record ClaimDto
     {
         public string Type { get; set; } = null!;
         public object Value { get; set; } = null!;

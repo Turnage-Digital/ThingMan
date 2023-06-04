@@ -12,7 +12,8 @@ public static class ThingDefsApi
     public static IEndpointConventionBuilder MapThingDefsApi(this IEndpointRouteBuilder endpoints)
     {
         var retval = endpoints
-            .MapGroup("/thing-defs")
+            .MapGroup("/api/thing-defs")
+            .WithTags("ThingDefs")
             .RequireAuthorization();
 
         retval.MapPost("/create", async (
@@ -34,8 +35,7 @@ public static class ThingDefsApi
             })
             .Produces(Status401Unauthorized)
             .Produces<ThingDefDto>(Status201Created)
-            .Produces(Status500InternalServerError)
-            .WithTags("ThingDefs");
+            .Produces(Status500InternalServerError);
 
         return retval;
     }

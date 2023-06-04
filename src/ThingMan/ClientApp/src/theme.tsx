@@ -3,9 +3,8 @@ import { createTheme } from "@mui/material";
 const rootElement = document.getElementById("root");
 const theme = createTheme({
   palette: {
-    mode: "dark",
     primary: {
-      main: "#BF360C",
+      main: "#0c95bf",
     },
     secondary: {
       main: "#0c95bf",

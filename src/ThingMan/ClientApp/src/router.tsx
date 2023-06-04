@@ -8,7 +8,7 @@ import {
 import { DashboardPage } from "./pages";
 import Shell from "./shell";
 
-export const router = createBrowserRouter(
+const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route element={<Shell />}>
@@ -17,3 +17,5 @@ export const router = createBrowserRouter(
     </>
   )
 );
+
+export default router;

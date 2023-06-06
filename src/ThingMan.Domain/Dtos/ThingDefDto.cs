@@ -6,7 +6,7 @@ public record ThingDefDto
 {
     [JsonProperty("id")]
     public string Id { get; set; } = null!;
-    
+
     [JsonProperty("userId")]
     public string? UserId { get; set; }
 
@@ -27,4 +27,10 @@ public record ThingDefDto
 
     [JsonProperty("propDef3")]
     public PropertyDefDto? PropertyDef3 { get; set; }
+
+    [JsonProperty("propDef4")]
+    public PropertyDefDto? PropertyDef4 { get; set; }
+
+    [JsonProperty("propDef5")]
+    public PropertyDefDto? PropertyDef5 { get; set; }
 }

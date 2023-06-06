@@ -1,7 +1,7 @@
 import React, { useState, PropsWithChildren, FC, useMemo } from "react";
 
-import { IUserApi } from "../../api";
-import { ClaimDto } from "../../api/dtos";
+import { IUserApi } from "../api";
+import { ClaimDto } from "../api/dtos";
 
 import AuthContext from "./auth-context";
 

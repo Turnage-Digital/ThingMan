@@ -7,5 +7,5 @@ public abstract class Entity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public string? Id { get; set; } = null;
+    public Guid? Id { get; set; }
 }

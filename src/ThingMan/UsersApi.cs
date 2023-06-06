@@ -35,8 +35,8 @@ public static class UsersApi
 
     private record SignInInput
     {
-        public string Username { get; set; } = null!;
-        public string Password { get; set; } = null!;
+        public string Username { get; } = null!;
+        public string Password { get; } = null!;
     }
 
     private record SignInResultDto

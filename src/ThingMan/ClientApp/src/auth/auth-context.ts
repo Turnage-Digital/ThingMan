@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import { ClaimDto } from "../../api/dtos";
+import { ClaimDto } from "../api/dtos";
 
 interface Props {
   loading: boolean;

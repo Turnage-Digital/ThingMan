@@ -13,17 +13,18 @@ public static class ThingDefsApi
     {
         var retval = endpoints
             .MapGroup("/api/thing-defs")
-            .WithTags("ThingDefs")
             .RequireAuthorization();
 
         retval.MapPost("/create", async (
-                CreateThingDefCommand command,
+                ThingDefDto thingDef,
                 IMediator mediator,
                 IMapper mapper,
                 ClaimsPrincipal claimsPrincipal
             ) =>
             {
+                var command = new CreateThingDefCommand { ThingDef = thingDef };
                 var identity = (ClaimsIdentity)claimsPrincipal.Identity!;
+
                 command.UserId = identity.Claims
                     .Single(claim => claim.Type == ClaimTypes.NameIdentifier)
                     .Value;

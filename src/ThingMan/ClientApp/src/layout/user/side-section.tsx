@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Box, Drawer, Hidden, List } from "@mui/material";
 import { Dashboard } from "@mui/icons-material";
 
-import RouterListItem from "../router-list-item";
+import RouterListItem from "../../router-list-item";
 
 interface Props {
   drawerOpen: boolean;

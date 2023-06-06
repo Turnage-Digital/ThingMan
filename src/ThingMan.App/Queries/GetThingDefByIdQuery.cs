@@ -7,5 +7,5 @@ namespace ThingMan.App.Queries;
 public class GetThingDefByIdQuery : IRequest<ThingDefDto>
 {
     [JsonProperty("id")]
-    public string Id { get; set; } = null!;
+    public Guid Id { get; set; }
 }

@@ -15,7 +15,7 @@ internal class ThingDefsView : IThingDefsView
         _mapper = mapper;
     }
 
-    public async Task<ThingDefDto> GetById(string id, CancellationToken cancellationToken = default)
+    public async Task<ThingDefDto> GetById(Guid id, CancellationToken cancellationToken = default)
     {
         var entity = await _thingDefsRepository.ReadAsync(id, cancellationToken);
         var retval = _mapper.Map<ThingDefDto>(entity);

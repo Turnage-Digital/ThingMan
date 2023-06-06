@@ -12,14 +12,14 @@ internal class ThingDefsRepository : IThingDefsRepository
         _dbContext = dbContext;
     }
 
-    public async Task<bool> ExistsAsync(string id, CancellationToken cancellationToken = default)
+    public async Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var retval = await _dbContext.ThingDefs
             .AnyAsync(x => x.Id == id, cancellationToken);
         return retval;
     }
 
-    public async Task<ThingDef?> ReadAsync(string id, CancellationToken cancellationToken = default)
+    public async Task<ThingDef?> ReadAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var retval = await _dbContext.ThingDefs
             .FindAsync(new object?[] { id }, cancellationToken);

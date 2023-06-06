@@ -28,16 +28,16 @@ public class ThingManDbContext : DbContext
     {
         var entities = ChangeTracker
             .Entries<AggregateRoot>()
-            .Where(entity => entity.Entity.Notifications != null && entity.Entity.Notifications.Any())
+            .Where(entity => entity.Entity.Events != null && entity.Entity.Events.Any())
             .ToList();
 
         var notifications = entities
-            .SelectMany(entry => entry.Entity.Notifications!)
+            .SelectMany(entry => entry.Entity.Events!)
             .ToList();
 
         foreach (var entity in entities)
         {
-            entity.Entity.ClearNotifications();
+            entity.Entity.ClearEvents();
         }
 
         foreach (var notification in notifications)

@@ -22,27 +22,37 @@ public class ThingDef : AggregateRoot
 
     public PropertyDef? PropertyDef3 { get; set; }
 
+    public PropertyDef? PropertyDef4 { get; set; }
+
+    public PropertyDef? PropertyDef5 { get; set; }
+
     public static ThingDef Create(
         string name,
         string userId,
-        StatusDef[] statuses,
-        NotificationDef[] notificationDefs,
+        ICollection<StatusDef> statusDefs,
+        ICollection<NotificationDef> notificationDefs,
         PropertyDef? propertyDef1 = null,
         PropertyDef? propertyDef2 = null,
-        PropertyDef? propertyDef3 = null
+        PropertyDef? propertyDef3 = null,
+        PropertyDef? propertyDef4 = null,
+        PropertyDef? propertyDef5 = null
     )
     {
         var retval = new ThingDef
         {
             Name = name,
             UserId = userId,
-            StatusDefs = statuses,
+            StatusDefs = statusDefs,
             NotificationDefs = notificationDefs,
             PropertyDef1 = propertyDef1,
             PropertyDef2 = propertyDef2,
-            PropertyDef3 = propertyDef3
+            PropertyDef3 = propertyDef3,
+            PropertyDef4 = propertyDef4,
+            PropertyDef5 = propertyDef5
         };
-        retval.AddNotification(new ThingDefCreatedEvent { ThingDef = retval });
+
+        retval.AddEvent(new ThingDefCreatedEvent { ThingDef = retval });
+
         return retval;
     }
 }

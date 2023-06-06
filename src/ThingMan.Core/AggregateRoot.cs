@@ -5,24 +5,24 @@ namespace ThingMan.Core;
 
 public abstract class AggregateRoot : Entity, IAggregateRoot
 {
-    private List<INotification>? _notifications;
+    private List<INotification>? _events;
 
     [NotMapped]
-    public IEnumerable<INotification>? Notifications => _notifications?.AsReadOnly();
+    public IEnumerable<INotification>? Events => _events?.AsReadOnly();
 
-    public void AddNotification(INotification notification)
+    public void AddEvent(INotification notification)
     {
-        _notifications ??= new List<INotification>();
-        _notifications.Add(notification);
+        _events ??= new List<INotification>();
+        _events.Add(notification);
     }
 
-    public void RemoveNotification(INotification notification)
+    public void RemoveEvent(INotification notification)
     {
-        _notifications?.Remove(notification);
+        _events?.Remove(notification);
     }
 
-    public void ClearNotifications()
+    public void ClearEvents()
     {
-        _notifications?.Clear();
+        _events?.Clear();
     }
 }

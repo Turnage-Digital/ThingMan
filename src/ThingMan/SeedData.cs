@@ -15,11 +15,11 @@ public class SeedData
             .CreateScope();
         var userManager = scope.ServiceProvider
             .GetRequiredService<UserManager<IdentityUser>>();
-        
+
         var heath = userManager.FindByNameAsync("heath").Result;
         if (heath == null)
         {
-            CreateUser(userManager, "heath", "heath@email.com", "Pass123$", "Heath Turnage", 
+            CreateUser(userManager, "heath", "heath@email.com", "Pass123$", "Heath Turnage",
                 "Heath", "Turnage", "https://thingman.com");
         }
         else
@@ -30,7 +30,7 @@ public class SeedData
         var erika = userManager.FindByNameAsync("erika").Result;
         if (erika == null)
         {
-            CreateUser(userManager, "erika", "erika@email.com", "Pass123$", "Erika Turnage", 
+            CreateUser(userManager, "erika", "erika@email.com", "Pass123$", "Erika Turnage",
                 "Erika", "Turnage", "https://thingman.com");
         }
         else
@@ -40,16 +40,17 @@ public class SeedData
 
         Log.Information("Done seeding database. Exiting.");
     }
-    
+
     private static void CreateUser(
         UserManager<IdentityUser> userManager,
-        string userName, 
-        string email, 
-        string password, 
-        string name, 
-        string givenName, 
-        string familyName, 
-        string website)
+        string userName,
+        string email,
+        string password,
+        string name,
+        string givenName,
+        string familyName,
+        string website
+    )
     {
         var user = new IdentityUser
         {

@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { Box, Drawer, Hidden, List } from "@mui/material";
 import { Dashboard } from "@mui/icons-material";
+import { Box, Drawer, Hidden, List } from "@mui/material";
+import React, { FC } from "react";
 
 import RouterListItem from "../../router-list-item";
 
@@ -17,24 +17,10 @@ const SideSection: FC<Props> = ({
   selectedRoute,
   onRouteSelected,
 }: Props) => {
-  const drawerWidth = 240;
+  const drawerWidth: 240 = 240;
   const drawer = (
     <>
-      <Box
-        sx={(theme) => ({
-          width: drawerWidth,
-          display: "flex",
-          alignItems: "center",
-          padding: theme.spacing(0, 1),
-          ...theme.mixins.toolbar,
-        })}
-      >
-        <Box
-          sx={(theme) => ({ flexGrow: 1, padding: theme.spacing(1, 0, 0, 1) })}
-        >
-          Thing Man
-        </Box>
-      </Box>
+      <Box sx={(theme) => ({ width: drawerWidth, ...theme.mixins.toolbar })} />
       <List>
         <RouterListItem
           to="/"
@@ -50,17 +36,25 @@ const SideSection: FC<Props> = ({
   return (
     <>
       <Hidden smDown>
-        <Drawer sx={{ width: drawerWidth }} variant="permanent" anchor="left">
+        <Drawer
+          variant="permanent"
+          anchor="left"
+          sx={{
+            width: drawerWidth,
+          }}
+        >
           {drawer}
         </Drawer>
       </Hidden>
       <Hidden smUp>
         <Drawer
-          sx={{ width: drawerWidth }}
           variant="temporary"
           anchor="left"
           open={drawerOpen}
           onClose={onDrawerToggle}
+          sx={{
+            width: drawerWidth,
+          }}
         >
           {drawer}
         </Drawer>

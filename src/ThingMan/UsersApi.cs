@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
+using Serilog;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace ThingMan;
@@ -35,18 +38,27 @@ public static class UsersApi
 
     private record SignInInput
     {
-        public string Username { get; } = null!;
-        public string Password { get; } = null!;
+        [Required]
+        [JsonProperty("username")]
+        public string Username { get; set; } = null!;
+
+        [Required]
+        [JsonProperty("password")]
+        public string Password { get; set; } = null!;
     }
 
     private record SignInResultDto
     {
+        [JsonProperty("succeeded")]
         public bool Succeeded { get; set; }
     }
 
     private record ClaimDto
     {
+        [JsonProperty("type")]
         public string Type { get; set; } = null!;
+
+        [JsonProperty("value")]
         public object Value { get; set; } = null!;
     }
 }

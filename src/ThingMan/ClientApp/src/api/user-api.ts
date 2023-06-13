@@ -1,7 +1,5 @@
 import { ClaimDto } from "./dtos";
 
-// const baseUrl = `${process.env.PUBLIC_URL}/api/users`;
-
 interface IUserApi {
   signIn(username: string, password: string): Promise<{ succeeded: boolean }>;
   getClaims(): Promise<ClaimDto[]>;

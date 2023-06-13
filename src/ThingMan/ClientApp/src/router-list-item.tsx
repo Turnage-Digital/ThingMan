@@ -1,9 +1,4 @@
-import {
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import React, { FC, ReactElement } from "react";
 import { Link, LinkProps } from "react-router-dom";
 

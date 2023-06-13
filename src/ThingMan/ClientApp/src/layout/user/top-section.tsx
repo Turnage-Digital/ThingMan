@@ -1,6 +1,5 @@
-import React, { FC, useState } from "react";
+import { AccountCircle, Menu as MenuIcon } from "@mui/icons-material";
 import {
-  alpha,
   AppBar,
   Box,
   IconButton,
@@ -8,38 +7,9 @@ import {
   MenuItem,
   Toolbar,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { AccountCircle, Menu as MenuIcon } from "@mui/icons-material";
+import React, { FC, useState } from "react";
 
-import { useAuth } from "../../hooks";
-
-const PREFIX = "top-section";
-const classes = {
-  appBar: `${PREFIX}-appBar`,
-  title: `${PREFIX}-title`,
-  menuButton: `${PREFIX}-menuButton`,
-};
-
-const Root = styled("div")(({ theme }) => {
-  const drawerWidth = 240;
-  return {
-    [`& .${classes.appBar}`]: {
-      [theme.breakpoints.up("sm")]: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-      },
-    },
-    [`& .${classes.title}`]: {
-      flexGrow: 1,
-    },
-    [`& .${classes.menuButton}`]: {
-      marginRight: theme.spacing(2),
-      [theme.breakpoints.up("sm")]: {
-        display: "none",
-      },
-    },
-  };
-});
+import { useAuth } from "../../auth";
 
 interface Props {
   onDrawerToggle: () => void;
@@ -58,28 +28,45 @@ const TopSection: FC<Props> = ({ onDrawerToggle }: Props) => {
     setAnchorEl(null);
   };
 
+  const drawerWidth: 240 = 240;
+
   return (
-    <Root>
-      <AppBar elevation={1} className={classes.appBar}>
-        <Toolbar>
-          <IconButton className={classes.menuButton} onClick={onDrawerToggle}>
-            <MenuIcon />
-          </IconButton>
-          <Box className={classes.title} />
-          <IconButton color="default" onClick={handleOpenMenu}>
-            <AccountCircle />
-          </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleCloseMenu}
-          >
-            <MenuItem onClick={() => signOut()}>Sign Out</MenuItem>
-          </Menu>
-        </Toolbar>
-      </AppBar>
-    </Root>
+    <AppBar
+      elevation={0}
+      sx={(theme) => ({
+        backgroundColor: theme.palette.background.paper,
+        [theme.breakpoints.up("sm")]: {
+          width: `calc(100% - ${drawerWidth}px)`,
+          ml: `${drawerWidth}px`,
+        },
+      })}
+    >
+      <Toolbar>
+        <IconButton
+          sx={(theme) => ({
+            marginRight: theme.spacing(2),
+            [theme.breakpoints.up("sm")]: {
+              display: "none",
+            },
+          })}
+          onClick={onDrawerToggle}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Box sx={{ flexGrow: 1 }} />
+        <IconButton color="default" onClick={handleOpenMenu}>
+          <AccountCircle />
+        </IconButton>
+        <Menu
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleCloseMenu}
+        >
+          <MenuItem onClick={() => signOut()}>Sign Out</MenuItem>
+        </Menu>
+      </Toolbar>
+    </AppBar>
   );
 };
 

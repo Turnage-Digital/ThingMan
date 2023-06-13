@@ -1,9 +1,9 @@
-import { Stack } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { FC, useCallback, useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-import { SignIn, useAuth } from "./hooks";
-import { ContentSection, TopSection, SideSection } from "./layout";
+import { SignIn, useAuth } from "./auth";
+import { ContentSection, SideSection, TopSection } from "./layout";
 import Loading from "./loading";
 
 const Shell: FC = () => {
@@ -36,23 +36,20 @@ const Shell: FC = () => {
   }
 
   return (
-    <Stack
+    <Box
       sx={{
-        minWidth: "100%",
-        height: "100vh",
+        display: "flex",
       }}
     >
+      <TopSection onDrawerToggle={handleDrawerToggle} />
       <SideSection
         drawerOpen={drawerOpen}
         onDrawerToggle={handleDrawerToggle}
         selectedRoute={selectedRoute}
         onRouteSelected={handleRouteSelection}
       />
-      <TopSection onDrawerToggle={handleDrawerToggle} />
-      <ContentSection>
-        <Outlet />
-      </ContentSection>
-    </Stack>
+      <ContentSection />
+    </Box>
   );
 };
 

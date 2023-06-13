@@ -5,16 +5,15 @@ import {
   Route,
 } from "react-router-dom";
 
-import { DashboardPage } from "./pages";
+import { CreateThingDefPage, DashboardPage } from "./pages";
 import Shell from "./shell";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
-      <Route element={<Shell />}>
-        <Route path="/" element={<DashboardPage />} />
-      </Route>
-    </>
+    <Route path="/" element={<Shell />}>
+      <Route index element={<DashboardPage />} />
+      <Route path="/thing-def/create" element={<CreateThingDefPage />} />
+    </Route>
   )
 );
 

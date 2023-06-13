@@ -1,31 +1,13 @@
+import { Box, Container } from "@mui/material";
 import React, { FC } from "react";
-import { styled } from "@mui/material/styles";
+import { Outlet } from "react-router-dom";
 
-const PREFIX = "content-section";
-const classes = {
-  drawerHeader: `${PREFIX}-drawerHeader`,
-  content: `${PREFIX}-content`,
-};
-const Root = styled("div")(({ theme }) => ({
-  [`& .${classes.drawerHeader}`]: {
-    ...theme.mixins.toolbar,
-  },
-  [`& .${classes.content}`]: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-}));
-
-type Props = React.PropsWithChildren;
-
-const ContentSection: FC<Props> = ({ children }: Props) => {
+const ContentSection: FC = () => {
   return (
-    <Root>
-      <div className={classes.content}>
-        <div className={classes.drawerHeader} />
-        {children}
-      </div>
-    </Root>
+    <Container sx={{ pt: 4 }}>
+      <Box sx={(theme) => ({ ...theme.mixins.toolbar })} />
+      <Outlet />
+    </Container>
   );
 };
 

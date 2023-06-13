@@ -1,7 +1,5 @@
-import React, { FC, FormEvent } from "react";
 import {
   Alert,
-  Avatar,
   Box,
   Button,
   Container,
@@ -9,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { LockOutlined } from "@mui/icons-material";
+import React, { FC, FormEvent } from "react";
 
 import useAuth from "./use-auth";
 

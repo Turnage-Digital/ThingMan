@@ -1,2 +1,2 @@
-export { DashboardPage } from "./dashboard";
-export { CreateThingDefPage } from "./create-thing-def";
+export { HomePage } from "./home";
+export { ThingDefsPage, CreateThingDefPage } from "./thing-defs";

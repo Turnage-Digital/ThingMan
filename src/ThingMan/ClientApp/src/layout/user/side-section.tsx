@@ -1,8 +1,20 @@
-import { Dashboard } from "@mui/icons-material";
-import { Box, Drawer, Hidden, List } from "@mui/material";
-import React, { FC } from "react";
-
-import RouterListItem from "../../router-list-item";
+import React from "react";
+import {
+  Box,
+  Drawer,
+  Hidden,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import {
+  Home,
+  HomeOutlined,
+  Rocket,
+  RocketLaunch,
+  RocketLaunchOutlined,
+} from "@mui/icons-material";
 
 interface Props {
   drawerOpen: boolean;
@@ -11,24 +23,35 @@ interface Props {
   onRouteSelected: (route: string) => void;
 }
 
-const SideSection: FC<Props> = ({
+const SideSection = ({
   drawerOpen,
   onDrawerToggle,
   selectedRoute,
   onRouteSelected,
 }: Props) => {
-  const drawerWidth: 240 = 240;
+  const width: 240 = 240;
   const drawer = (
     <>
-      <Box sx={(theme) => ({ width: drawerWidth, ...theme.mixins.toolbar })} />
-      <List>
-        <RouterListItem
-          to="/"
-          primary="Dashboard"
-          icon={<Dashboard />}
-          selected={selectedRoute.includes("/")}
+      <Box sx={(theme) => ({ width, ...theme.mixins.toolbar })} />
+      <List sx={{ width }}>
+        <ListItemButton
+          selected={selectedRoute === "/"}
           onClick={() => onRouteSelected("/")}
-        />
+        >
+          <ListItemIcon>
+            <Home />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItemButton>
+        <ListItemButton
+          selected={selectedRoute.includes("/thing-defs")}
+          onClick={() => onRouteSelected("/thing-defs")}
+        >
+          <ListItemIcon>
+            <RocketLaunch />
+          </ListItemIcon>
+          <ListItemText primary="Thing Definitions" />
+        </ListItemButton>
       </List>
     </>
   );
@@ -36,13 +59,7 @@ const SideSection: FC<Props> = ({
   return (
     <>
       <Hidden smDown>
-        <Drawer
-          variant="permanent"
-          anchor="left"
-          sx={{
-            width: drawerWidth,
-          }}
-        >
+        <Drawer variant="permanent" anchor="left" sx={{ width }}>
           {drawer}
         </Drawer>
       </Hidden>
@@ -52,9 +69,7 @@ const SideSection: FC<Props> = ({
           anchor="left"
           open={drawerOpen}
           onClose={onDrawerToggle}
-          sx={{
-            width: drawerWidth,
-          }}
+          sx={{ width }}
         >
           {drawer}
         </Drawer>

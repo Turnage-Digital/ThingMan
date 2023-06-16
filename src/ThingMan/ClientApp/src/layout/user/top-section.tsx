@@ -15,7 +15,7 @@ interface Props {
   onDrawerToggle: () => void;
 }
 
-const TopSection: FC<Props> = ({ onDrawerToggle }: Props) => {
+const TopSection = ({ onDrawerToggle }: Props) => {
   const { signOut } = useAuth();
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -35,6 +35,7 @@ const TopSection: FC<Props> = ({ onDrawerToggle }: Props) => {
       elevation={0}
       sx={(theme) => ({
         backgroundColor: theme.palette.background.paper,
+        borderBottom: `1px solid ${theme.palette.divider}`,
         [theme.breakpoints.up("sm")]: {
           width: `calc(100% - ${drawerWidth}px)`,
           ml: `${drawerWidth}px`,

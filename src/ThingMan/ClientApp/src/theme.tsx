@@ -9,18 +9,13 @@ const theme = createTheme({
     secondary: {
       main: "#0c95bf",
     },
+    background: {
+      default: "#F5F5F5",
+    },
   },
-  components: {
-    MuiPopover: {
-      defaultProps: {
-        container: rootElement,
-      },
-    },
-    MuiPopper: {
-      defaultProps: {
-        container: rootElement,
-      },
-    },
+  typography: {
+    fontSize: 12,
+    fontFamily: "Inter, sans-serif",
   },
 });
 

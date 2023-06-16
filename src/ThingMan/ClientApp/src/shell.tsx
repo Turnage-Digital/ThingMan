@@ -1,31 +1,36 @@
 import { Box } from "@mui/material";
-import React, { FC, useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { SignIn, useAuth } from "./auth";
 import { ContentSection, SideSection, TopSection } from "./layout";
 import Loading from "./loading";
 
-const Shell: FC = () => {
+const Shell = () => {
   const { loading, signedIn } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedRoute, setSelectedRoute] = useState("");
 
-  function handleDrawerToggle() {
-    setDrawerOpen(!drawerOpen);
-  }
-
-  const handleRouteSelection = useCallback((route: string) => {
-    setSelectedRoute(route);
-    setDrawerOpen(false);
-  }, []);
+  const handleRouteSelection = useCallback(
+    (route: string) => {
+      setSelectedRoute(route);
+      setDrawerOpen(false);
+      navigate(route);
+    },
+    [navigate]
+  );
 
   useEffect(
     () => handleRouteSelection(location.pathname),
     [handleRouteSelection, location.pathname]
   );
+
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
+  };
 
   if (loading) {
     return <Loading />;

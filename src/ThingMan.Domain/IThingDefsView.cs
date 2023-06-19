@@ -1,8 +1,0 @@
-using ThingMan.Domain.Dtos;
-
-namespace ThingMan.Domain;
-
-public interface IThingDefsView
-{
-    Task<ThingDefDto> GetById(Guid id, CancellationToken cancellationToken);
-}

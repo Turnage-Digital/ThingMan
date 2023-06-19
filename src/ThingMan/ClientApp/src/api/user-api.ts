@@ -2,7 +2,9 @@ import { ClaimDto } from "./dtos";
 
 interface IUserApi {
   signIn(username: string, password: string): Promise<{ succeeded: boolean }>;
+
   getClaims(): Promise<ClaimDto[]>;
+
   signOut(): Promise<void>;
 }
 

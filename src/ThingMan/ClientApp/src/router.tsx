@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import { HomePage, ThingDefsPage, CreateThingDefPage } from "./pages";
+import { CreateThingDefPage, HomePage, ThingDefsPage } from "./pages";
 import Shell from "./shell";
 
 const router = createBrowserRouter(

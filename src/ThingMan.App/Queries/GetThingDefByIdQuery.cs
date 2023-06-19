@@ -1,10 +1,10 @@
 using MediatR;
 using Newtonsoft.Json;
-using ThingMan.Domain.Dtos;
+using ThingMan.Core.Views;
 
 namespace ThingMan.App.Queries;
 
-public class GetThingDefByIdQuery : IRequest<ThingDefDto>
+public class GetThingDefByIdQuery : IRequest<ThingDefView>
 {
     [JsonProperty("id")]
     public Guid Id { get; set; }

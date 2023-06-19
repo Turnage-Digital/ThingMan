@@ -8,13 +8,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import {
-  Home,
-  HomeOutlined,
-  Rocket,
-  RocketLaunch,
-  RocketLaunchOutlined,
-} from "@mui/icons-material";
+import { Home, RocketLaunch } from "@mui/icons-material";
 
 interface Props {
   drawerOpen: boolean;

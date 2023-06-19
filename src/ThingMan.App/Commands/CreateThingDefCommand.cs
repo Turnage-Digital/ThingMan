@@ -1,12 +1,11 @@
 using MediatR;
-using ThingMan.Domain;
-using ThingMan.Domain.Dtos;
+using ThingMan.Core.Views;
 
 namespace ThingMan.App.Commands;
 
-public class CreateThingDefCommand : IRequest<ThingDef>
+public class CreateThingDefCommand : IRequest<ThingDefView>
 {
     public string? UserId { get; set; }
 
-    public ThingDefDto ThingDef { get; set; } = null!;
+    public ThingDefView ThingDef { get; set; } = null!;
 }

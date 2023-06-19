@@ -7,7 +7,7 @@ import {
   MenuItem,
   Toolbar,
 } from "@mui/material";
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 
 import { useAuth } from "../../auth";
 

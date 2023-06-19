@@ -1,10 +1,10 @@
 using MediatR;
-using ThingMan.Domain;
-using ThingMan.Domain.Dtos;
+using ThingMan.Core;
+using ThingMan.Core.Views;
 
 namespace ThingMan.App.Queries;
 
-public class GetThingDefByIdQueryHandler : IRequestHandler<GetThingDefByIdQuery, ThingDefDto>
+public class GetThingDefByIdQueryHandler : IRequestHandler<GetThingDefByIdQuery, ThingDefView>
 {
     private readonly IThingDefsView _thingDefsView;
 
@@ -13,7 +13,7 @@ public class GetThingDefByIdQueryHandler : IRequestHandler<GetThingDefByIdQuery,
         _thingDefsView = thingDefsView;
     }
 
-    public async Task<ThingDefDto> Handle(GetThingDefByIdQuery request, CancellationToken cancellationToken)
+    public async Task<ThingDefView> Handle(GetThingDefByIdQuery request, CancellationToken cancellationToken)
     {
         return await _thingDefsView.GetById(request.Id, cancellationToken);
     }

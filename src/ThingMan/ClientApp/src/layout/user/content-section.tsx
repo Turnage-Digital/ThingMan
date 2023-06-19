@@ -1,13 +1,13 @@
 import React from "react";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
 const ContentSection = () => {
   return (
-    <Container component="main" fixed>
+    <Box component="main" sx={{ width: "100%", py: 2, px: 4 }}>
       <Box sx={(theme) => ({ ...theme.mixins.toolbar })} />
       <Outlet />
-    </Container>
+    </Box>
   );
 };
 

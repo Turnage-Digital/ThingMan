@@ -1,6 +1,6 @@
 using AutoMapper;
+using ThingMan.Contracts.Dtos;
 using ThingMan.Core.Entities;
-using ThingMan.Core.Views;
 
 namespace ThingMan.Core.Configuration;
 
@@ -8,16 +8,16 @@ public class CoreMappingProfile : Profile
 {
     public CoreMappingProfile()
     {
-        CreateMap<ThingDef, ThingDefView>()
+        CreateMap<ThingDef, ThingDefDto>()
             .ReverseMap();
 
-        CreateMap<StatusDef, StatusDefView>()
+        CreateMap<StatusDef, StatusDefDto>()
             .ReverseMap();
 
-        CreateMap<NotificationDef, NotificationDefView>()
+        CreateMap<NotificationDef, NotificationDefDto>()
             .ReverseMap();
 
-        CreateMap<PropertyDef, PropertyDefView>()
+        CreateMap<PropertyDef, PropertyDefDto>()
             .ReverseMap();
     }
 }

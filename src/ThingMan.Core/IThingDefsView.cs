@@ -1,8 +1,8 @@
-using ThingMan.Core.Views;
+using ThingMan.Contracts.Dtos;
 
 namespace ThingMan.Core;
 
 public interface IThingDefsView
 {
-    Task<ThingDefView> GetById(Guid id, CancellationToken cancellationToken);
+    Task<ThingDefDto> GetById(Guid id, CancellationToken cancellationToken);
 }

@@ -2,7 +2,7 @@ using System.Security.Claims;
 using AutoMapper;
 using MediatR;
 using ThingMan.App.Commands;
-using ThingMan.Core.Views;
+using ThingMan.Contracts.Dtos;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace ThingMan;
@@ -16,7 +16,7 @@ public static class ThingDefsApi
             .RequireAuthorization();
 
         retval.MapPost("/create", async (
-                ThingDefView thingDef,
+                ThingDefDto thingDef,
                 IMediator mediator,
                 IMapper mapper,
                 ClaimsPrincipal claimsPrincipal
@@ -30,12 +30,12 @@ public static class ThingDefsApi
                     .Value;
 
                 var result = await mediator.Send(command);
-                var dto = mapper.Map<ThingDefView>(result);
+                var dto = mapper.Map<ThingDefDto>(result);
 
                 return Results.Created($"/thing-defs/{dto.Id}", dto);
             })
             .Produces(Status401Unauthorized)
-            .Produces<ThingDefView>(Status201Created)
+            .Produces<ThingDefDto>(Status201Created)
             .Produces(Status500InternalServerError);
 
         return retval;

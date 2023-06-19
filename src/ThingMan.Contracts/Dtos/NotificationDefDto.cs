@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 
-namespace ThingMan.Core.Views;
+namespace ThingMan.Contracts.Dtos;
 
-public class NotificationDefView
+public class NotificationDefDto
 {
     [JsonProperty("type")]
     public string Type { get; set; } = null!;

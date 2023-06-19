@@ -25,12 +25,12 @@ public static class UsersApi
         retval.MapGet("/claims", (ClaimsPrincipal claimsPrincipal) =>
             {
                 var claims = claimsPrincipal.Claims
-                    .Select(x => new Claim { Type = x.Type, Value = x.Value });
+                    .Select(x => new ClaimDto { Type = x.Type, Value = x.Value });
                 return Results.Json(claims);
             })
             .RequireAuthorization()
             .Produces(Status401Unauthorized)
-            .Produces<Claim[]>();
+            .Produces<ClaimDto[]>();
 
         return retval;
     }
@@ -52,7 +52,7 @@ public static class UsersApi
         public bool Succeeded { get; set; }
     }
 
-    private record Claim
+    private record ClaimDto
     {
         [JsonProperty("type")]
         public string Type { get; set; } = null!;

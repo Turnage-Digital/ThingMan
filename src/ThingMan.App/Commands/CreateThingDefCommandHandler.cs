@@ -1,11 +1,13 @@
 using AutoMapper;
 using MediatR;
+using ThingMan.Core;
+using ThingMan.Core.Entities;
+using ThingMan.Core.Views;
 using ThingMan.Domain;
-using ThingMan.Domain.Dtos;
 
 namespace ThingMan.App.Commands;
 
-public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefCommand, ThingDef>
+public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefCommand, ThingDefView>
 {
     private readonly IMapper _mapper;
     private readonly IThingManUnitOfWork _unitOfWork;
@@ -16,37 +18,49 @@ public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefComman
         _mapper = mapper;
     }
 
-    public string Name => nameof(CreateThingDefCommandHandler);
-
-    public async Task<ThingDef> Handle(CreateThingDefCommand request, CancellationToken cancellationToken)
+    public async Task<ThingDefView> Handle(CreateThingDefCommand request, CancellationToken cancellationToken)
     {
-        var statusDefs = _mapper.Map<StatusDefDto[], StatusDef[]>(request.StatusDefs);
-        var notificationDefs = _mapper.Map<NotificationDefDto[], NotificationDef[]>(request.NotificationDefs);
+        var thingDef = request.ThingDef;
+        var statusDefs = _mapper.Map<StatusDefView[], StatusDef[]>(thingDef.StatusDefs);
+        var notificationDefs = _mapper.Map<NotificationDefView[], NotificationDef[]>(thingDef.NotificationDefs);
 
         PropertyDef? propertyDef1 = null;
-        if (request.PropertyDef1 is not null)
+        if (thingDef.PropertyDef1 is not null)
         {
-            propertyDef1 = _mapper.Map<PropertyDefDto, PropertyDef>(request.PropertyDef1);
+            propertyDef1 = _mapper.Map<PropertyDefView, PropertyDef>(thingDef.PropertyDef1);
         }
 
         PropertyDef? propertyDef2 = null;
-        if (request.PropertyDef2 is not null)
+        if (thingDef.PropertyDef2 is not null)
         {
-            propertyDef2 = _mapper.Map<PropertyDefDto, PropertyDef>(request.PropertyDef2);
+            propertyDef2 = _mapper.Map<PropertyDefView, PropertyDef>(thingDef.PropertyDef2);
         }
 
         PropertyDef? propertyDef3 = null;
-        if (request.PropertyDef3 is not null)
+        if (thingDef.PropertyDef3 is not null)
         {
-            propertyDef3 = _mapper.Map<PropertyDefDto, PropertyDef>(request.PropertyDef3);
+            propertyDef3 = _mapper.Map<PropertyDefView, PropertyDef>(thingDef.PropertyDef3);
         }
 
-        var retval = ThingDef.Create(request.Name, request.UserId!, statusDefs, notificationDefs,
-            propertyDef1, propertyDef2, propertyDef3);
+        PropertyDef? propertyDef4 = null;
+        if (thingDef.PropertyDef4 is not null)
+        {
+            propertyDef4 = _mapper.Map<PropertyDefView, PropertyDef>(thingDef.PropertyDef4);
+        }
 
-        await _unitOfWork.ThingDefsRepository.CreateAsync(retval, cancellationToken);
+        PropertyDef? propertyDef5 = null;
+        if (thingDef.PropertyDef5 is not null)
+        {
+            propertyDef5 = _mapper.Map<PropertyDefView, PropertyDef>(thingDef.PropertyDef5);
+        }
+
+        var created = ThingDefAggregate.Create(thingDef.Name, request.UserId!, statusDefs, notificationDefs,
+            propertyDef1, propertyDef2, propertyDef3, propertyDef4, propertyDef5);
+
+        await _unitOfWork.ThingDefsRepository.CreateAsync(created, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
+        var retval = _mapper.Map<ThingDefView>(created);
         return retval;
     }
 }

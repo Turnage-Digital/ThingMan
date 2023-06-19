@@ -5,15 +5,19 @@ import {
   Route,
 } from "react-router-dom";
 
-import { DashboardPage } from "./pages";
+import { CreateThingDefPage, HomePage, ThingDefsPage } from "./pages";
 import Shell from "./shell";
 
-export const router = createBrowserRouter(
+const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
-      <Route element={<Shell />}>
-        <Route path="/" element={<DashboardPage />} />
+    <Route path="/" element={<Shell />}>
+      <Route element={<HomePage />} index />
+      <Route path="thing-defs">
+        <Route element={<ThingDefsPage />} index />
+        <Route path="create" element={<CreateThingDefPage />} />
       </Route>
-    </>
+    </Route>
   )
 );
+
+export default router;

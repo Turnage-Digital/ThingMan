@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{40
 	ProjectSection(SolutionItems) = preProject
 		nuget.config = nuget.config
 		.gitignore = .gitignore
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{970CCF18-89D6-4534-8F9D-D5FCCCF3BB16}"
@@ -15,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.Core", "src\ThingM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.Domain", "src\ThingMan.Domain\ThingMan.Domain.csproj", "{3DCFFEA6-C512-4E4A-A02A-91BBE5D37BD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.Infra.SqlDB", "src\ThingMan.Infra.SqlDB\ThingMan.Infra.SqlDB.csproj", "{E45225AA-0B4A-4C5E-AFBE-C9FB6994E47F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.Core.SqlDB", "src\ThingMan.Core.SqlDB\ThingMan.Core.SqlDB.csproj", "{E45225AA-0B4A-4C5E-AFBE-C9FB6994E47F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMan.App", "src\ThingMan.App\ThingMan.App.csproj", "{EB38439C-9D25-455B-90C7-24B6DF369AA4}"
 EndProject

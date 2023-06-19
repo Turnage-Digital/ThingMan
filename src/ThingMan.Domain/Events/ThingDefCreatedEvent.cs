@@ -6,5 +6,5 @@ namespace ThingMan.Domain.Events;
 public class ThingDefCreatedEvent : INotification
 {
     [JsonProperty("thingDef")]
-    public ThingDef ThingDef { get; set; } = null!;
+    public ThingDefAggregate ThingDefAggregate { get; set; } = null!;
 }

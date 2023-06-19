@@ -3,25 +3,19 @@ import { createTheme } from "@mui/material";
 const rootElement = document.getElementById("root");
 const theme = createTheme({
   palette: {
-    mode: "dark",
     primary: {
-      main: "#BF360C",
+      main: "#0c95bf",
     },
     secondary: {
       main: "#0c95bf",
     },
+    background: {
+      default: "#F5F5F5",
+    },
   },
-  components: {
-    MuiPopover: {
-      defaultProps: {
-        container: rootElement,
-      },
-    },
-    MuiPopper: {
-      defaultProps: {
-        container: rootElement,
-      },
-    },
+  typography: {
+    fontSize: 12,
+    fontFamily: "Inter, sans-serif",
   },
 });
 

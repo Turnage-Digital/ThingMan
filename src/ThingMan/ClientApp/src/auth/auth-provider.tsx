@@ -1,23 +1,49 @@
-import React, { useState, PropsWithChildren, FC, useMemo } from "react";
+import React, { FC, PropsWithChildren, useMemo, useState } from "react";
+
+import { IUserApi } from "../api";
+import { ClaimDto } from "../api/dtos";
 
 import AuthContext from "./auth-context";
 
-type Props = PropsWithChildren;
+type Props = PropsWithChildren<{ userApi: IUserApi }>;
 
-const AuthProvider: FC<Props> = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const AuthProvider: FC<Props> = ({ children, userApi }) => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [signedIn, setSignedIn] = useState<boolean>(false);
+  const [claims, setClaims] = useState<ClaimDto[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const authContextValue = useMemo(() => {
-    const login = () => {
-      setIsLoggedIn(true);
+    const signInLocal = async (username: string, password: string) => {
+      setLoading(true);
+      const result = await userApi.signIn(username, password);
+      if (result.succeeded) {
+        const claims = await userApi.getClaims();
+        setClaims(claims);
+        setSignedIn(result.succeeded);
+      } else {
+        setError("Invalid username or password.");
+      }
+      setLoading(false);
     };
 
-    const logout = () => {
-      setIsLoggedIn(false);
+    const signOutLocal = async () => {
+      setLoading(true);
+      await userApi.signOut();
+      setClaims([]);
+      setSignedIn(false);
+      setLoading(false);
     };
 
-    return { isLoggedIn, login, logout };
-  }, [isLoggedIn]);
+    return {
+      loading,
+      signedIn,
+      claims,
+      signIn: signInLocal,
+      signOut: signOutLocal,
+      error,
+    };
+  }, [userApi, loading, signedIn, claims, error]);
 
   return (
     <AuthContext.Provider value={authContextValue}>

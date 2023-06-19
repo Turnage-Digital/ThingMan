@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using ThingMan.App.Extensions;
+using ThingMan.Core.Extensions;
+using ThingMan.Core.SqlDB;
+using ThingMan.Core.SqlDB.Extensions;
 using ThingMan.Domain.Extensions;
-using ThingMan.Infra.SqlDB;
-using ThingMan.Infra.SqlDB.Extensions;
 
 namespace ThingMan;
 
@@ -29,6 +30,7 @@ internal static class HostingExtensions
                 .AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            registry.AddCore();
             registry.AddDomain();
             registry.AddApp();
 
@@ -38,8 +40,6 @@ internal static class HostingExtensions
                     options.LoginPath = "/Account/Login";
                     options.LogoutPath = "/Account/Logout";
                 });
-
-            registry.AddDomain();
 
             registry.AddAuthorization();
 

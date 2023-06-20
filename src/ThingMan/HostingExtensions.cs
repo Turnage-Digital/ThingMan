@@ -30,9 +30,10 @@ internal static class HostingExtensions
                 .AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            registry.AddCore();
-            registry.AddDomain();
-            registry.AddApp();
+            registry
+                .AddCore()
+                .AddDomain()
+                .AddApp();
 
             registry
                 .ConfigureApplicationCookie(options =>

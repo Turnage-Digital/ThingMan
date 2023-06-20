@@ -18,8 +18,8 @@ public class ThingManDbContext : DbContext
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        var retval = await base.SaveChangesAsync(cancellationToken);
         await DispatchEventsAsync();
+        var retval = await base.SaveChangesAsync(cancellationToken);
         return retval;
     }
 
@@ -27,7 +27,7 @@ public class ThingManDbContext : DbContext
     {
         var entities = ChangeTracker
             .Entries<IEntity>()
-            .Where(entity => entity.Entity.Events != null && entity.Entity.Events.Any())
+            .Where(changed => changed.Entity.Events != null && changed.Entity.Events.Any())
             .ToList();
 
         var notifications = entities

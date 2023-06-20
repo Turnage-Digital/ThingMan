@@ -23,11 +23,4 @@ internal class ThingDefsRepository : IThingDefsRepository
     {
         await _dbContext.ThingDefs.AddAsync(entity, cancellationToken);
     }
-
-    public async Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default)
-    {
-        var retval = await _dbContext.ThingDefs
-            .AnyAsync(x => x.Id == id, cancellationToken);
-        return retval;
-    }
 }

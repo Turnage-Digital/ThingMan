@@ -1,8 +1,7 @@
 using System.Security.Claims;
-using AutoMapper;
 using MediatR;
 using ThingMan.App.Commands;
-using ThingMan.Contracts.Dtos;
+using ThingMan.Core.SqlDB.Views;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace ThingMan;
@@ -16,13 +15,12 @@ public static class ThingDefsApi
             .RequireAuthorization();
 
         retval.MapPost("/create", async (
-                ThingDefDto thingDef,
+                ThingDefView<Guid> thingDef,
                 IMediator mediator,
-                IMapper mapper,
                 ClaimsPrincipal claimsPrincipal
             ) =>
             {
-                var command = new CreateThingDefCommand { ThingDef = thingDef };
+                var command = new CreateThingDefCommand<Guid> { ThingDef = thingDef };
                 var identity = (ClaimsIdentity)claimsPrincipal.Identity!;
 
                 command.UserId = identity.Claims
@@ -30,12 +28,10 @@ public static class ThingDefsApi
                     .Value;
 
                 var result = await mediator.Send(command);
-                var dto = mapper.Map<ThingDefDto>(result);
-
-                return Results.Created($"/thing-defs/{dto.Id}", dto);
+                return Results.Created($"/thing-defs/{result.Id}", result);
             })
             .Produces(Status401Unauthorized)
-            .Produces<ThingDefDto>(Status201Created)
+            .Produces<ThingDefView<Guid>>(Status201Created)
             .Produces(Status500InternalServerError);
 
         return retval;

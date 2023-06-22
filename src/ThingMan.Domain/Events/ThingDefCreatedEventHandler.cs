@@ -1,13 +1,14 @@
 using MediatR;
-using Serilog;
+using ThingMan.Core;
 
 namespace ThingMan.Domain.Events;
 
-internal class ThingDefCreatedEventHandler : INotificationHandler<ThingDefCreatedEvent>
+internal class
+    ThingDefCreatedEventHandler<TThingDef, TKey> : INotificationHandler<ThingDefCreatedEvent<TThingDef, TKey>>
+    where TThingDef : IThingDef<TKey>
 {
-    public Task Handle(ThingDefCreatedEvent notification, CancellationToken cancellationToken)
+    public async Task Handle(ThingDefCreatedEvent<TThingDef, TKey> notification, CancellationToken cancellationToken)
     {
-        Log.Information("Received event: {Event}", nameof(notification));
-        return Task.CompletedTask;
+        throw new NotImplementedException();
     }
 }

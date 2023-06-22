@@ -2,11 +2,9 @@ using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using ThingMan.App.Extensions;
-using ThingMan.Core.Extensions;
 using ThingMan.Core.SqlDB;
+using ThingMan.Core.SqlDB.Configuration;
 using ThingMan.Core.SqlDB.Extensions;
-using ThingMan.Domain.Extensions;
 
 namespace ThingMan;
 
@@ -30,10 +28,15 @@ internal static class HostingExtensions
                 .AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            registry
-                .AddCore()
-                .AddDomain()
-                .AddApp();
+            registry.AddAutoMapper(config =>
+            {
+                config.AddProfile<CoreMappingProfile>();
+            });
+            
+            // registry
+            //     .AddCore()
+            //     .AddDomain()
+            //     .AddApp();
 
             registry
                 .ConfigureApplicationCookie(options =>

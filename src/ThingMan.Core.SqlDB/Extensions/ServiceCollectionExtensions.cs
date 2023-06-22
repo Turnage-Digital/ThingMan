@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ThingMan.Core.SqlDB.Repositories;
-using ThingMan.Core.SqlDB.Views;
+using ThingMan.Core.SqlDB.Configuration;
+using ThingMan.Core.SqlDB.Entities;
 
 namespace ThingMan.Core.SqlDB.Extensions;
 
@@ -15,7 +15,7 @@ public static class ServiceCollectionExtensions
         services.AddDbContext<ThingManDbContext>(options =>
             options.UseSqlite(connectionString));
 
-        services.AddScoped<IThingManUnitOfWork, ThingManUnitOfWork>();
+        services.AddScoped<IThingManUnitOfWork<ThingDefEntity, Guid>, ThingManUnitOfWork>();
 
         services.AddRepositories();
         services.AddViews();
@@ -25,13 +25,13 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IThingDefsRepository, ThingDefsRepository>();
+        services.AddScoped<IThingDefsStore<ThingDefEntity, Guid>, ThingDefsStore>();
         return services;
     }
 
     public static IServiceCollection AddViews(this IServiceCollection services)
     {
-        services.AddScoped<IThingDefsView, ThingDefsView>();
+        services.AddScoped<IGetThingDefViewById<Guid>, GetThingDefViewById>();
         return services;
     }
 }

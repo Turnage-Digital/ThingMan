@@ -1,8 +1,8 @@
-using ThingMan.Core.SqlDB.Repositories;
+using ThingMan.Core.SqlDB.Entities;
 
 namespace ThingMan.Core.SqlDB;
 
-public class ThingManUnitOfWork : UnitOfWork<ThingManDbContext>, IThingManUnitOfWork
+public class ThingManUnitOfWork : UnitOfWork<ThingManDbContext>, IThingManUnitOfWork<ThingDefEntity, Guid>
 {
     private readonly ThingManDbContext _dbContext;
 
@@ -11,5 +11,5 @@ public class ThingManUnitOfWork : UnitOfWork<ThingManDbContext>, IThingManUnitOf
         _dbContext = dbContext;
     }
 
-    public IThingDefsRepository ThingDefsRepository => new ThingDefsRepository(_dbContext);
+    public IThingDefsStore<ThingDefEntity, Guid> ThingDefsStore => new ThingDefsStore(_dbContext);
 }

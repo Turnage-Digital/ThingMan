@@ -1,20 +1,20 @@
 using MediatR;
-using ThingMan.Contracts.Dtos;
 using ThingMan.Core;
 
 namespace ThingMan.App.Queries;
 
-public class GetThingDefByIdQueryHandler : IRequestHandler<GetThingDefByIdQuery, ThingDefDto>
+public class GetThingDefByIdQueryHandler<TKey> : IRequestHandler<GetThingDefByIdQuery<TKey>, IThingDef<TKey>>
 {
-    private readonly IThingDefsView _thingDefsView;
+    private readonly IGetThingDefViewById<TKey> _getThingDefViewById;
 
-    public GetThingDefByIdQueryHandler(IThingDefsView thingDefsView)
+    public GetThingDefByIdQueryHandler(IGetThingDefViewById<TKey> getThingDefViewById)
     {
-        _thingDefsView = thingDefsView;
+        _getThingDefViewById = getThingDefViewById;
     }
 
-    public async Task<ThingDefDto> Handle(GetThingDefByIdQuery request, CancellationToken cancellationToken)
+    public async Task<IThingDef<TKey>> Handle(GetThingDefByIdQuery<TKey> request, CancellationToken cancellationToken)
     {
-        return await _thingDefsView.GetById(request.Id, cancellationToken);
+        var retval = await _getThingDefViewById.Get(request.Id, cancellationToken);
+        return retval;
     }
 }

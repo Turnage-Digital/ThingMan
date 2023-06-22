@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 
-namespace ThingMan.Contracts.Dtos;
+namespace ThingMan.Core.SqlDB.Views;
 
-public record StatusDefDto
+public record StatusDefView
 {
     [JsonProperty("name")]
     public string Name { get; set; } = null!;

@@ -1,6 +1,7 @@
 namespace ThingMan.Core;
 
-public interface IThingManUnitOfWork : IUnitOfWork
+public interface IThingManUnitOfWork<TThingDef, in TKey> : IUnitOfWork
+    where TThingDef : IThingDef<TKey>
 {
-    IThingDefsRepository ThingDefsRepository { get; }
+    IThingDefsStore<TThingDef, TKey> ThingDefsStore { get; }
 }

@@ -1,11 +1,9 @@
 using System.Reflection;
 using Lamar.Microsoft.DependencyInjection;
-using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using ThingMan.App.Commands;
-using ThingMan.Core;
 using ThingMan.Core.SqlDB;
 using ThingMan.Core.SqlDB.Configuration;
 using ThingMan.Core.SqlDB.Extensions;
@@ -33,7 +31,7 @@ internal static class HostingExtensions
 
             var appAssembly = Assembly.GetAssembly(typeof(CreateThingDefCommand))!;
             var domainAssembly = Assembly.GetAssembly(typeof(ThingDefAggregate<>))!;
-            registry.AddMediatR(config => 
+            registry.AddMediatR(config =>
                 config.RegisterServicesFromAssemblies(appAssembly, domainAssembly));
 
             registry

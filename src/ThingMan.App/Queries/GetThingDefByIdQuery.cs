@@ -4,8 +4,8 @@ using ThingMan.Core;
 
 namespace ThingMan.App.Queries;
 
-public class GetThingDefByIdQuery<TKey> : IRequest<IThingDef<TKey>>
+public class GetThingDefByIdQuery : IRequest<IReadOnlyThingDef>
 {
     [JsonProperty("id")]
-    public TKey Id { get; set; } = default!;
+    public string Id { get; set; } = null!;
 }

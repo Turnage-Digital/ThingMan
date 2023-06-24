@@ -1,6 +1,6 @@
 namespace ThingMan.Core;
 
-public interface IGetThingDefViewById<TKey>
+public interface IGetThingDefViewById
 {
-    Task<IThingDef<TKey>> Get(TKey id, CancellationToken cancellationToken);
+    Task<IReadOnlyThingDef> GetAsync(string id, CancellationToken cancellationToken);
 }

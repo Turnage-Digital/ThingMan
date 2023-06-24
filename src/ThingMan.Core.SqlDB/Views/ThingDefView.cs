@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace ThingMan.Core.SqlDB.Views;
 
-public record ThingDefView<TKey> : IThingDef<TKey>
+public record ThingDefView : IReadOnlyThingDef
 {
     [JsonProperty("name")]
     public string Name { get; set; } = null!;
@@ -13,21 +13,21 @@ public record ThingDefView<TKey> : IThingDef<TKey>
     [JsonProperty("notificationDefs")]
     public NotificationDefView[] NotificationDefs { get; set; } = null!;
 
-    [JsonProperty("propDef1")]
+    [JsonProperty("propertyDef1")]
     public PropertyDefView? PropertyDef1 { get; set; }
 
-    [JsonProperty("propDef2")]
+    [JsonProperty("propertyDef2")]
     public PropertyDefView? PropertyDef2 { get; set; }
 
-    [JsonProperty("propDef3")]
+    [JsonProperty("propertyDef3")]
     public PropertyDefView? PropertyDef3 { get; set; }
 
-    [JsonProperty("propDef4")]
+    [JsonProperty("propertyDef4")]
     public PropertyDefView? PropertyDef4 { get; set; }
 
-    [JsonProperty("propDef5")]
+    [JsonProperty("propertyDef5")]
     public PropertyDefView? PropertyDef5 { get; set; }
 
     [JsonProperty("id")]
-    public TKey Id { get; set; } = default!;
+    public string Id { get; set; } = null!;
 }

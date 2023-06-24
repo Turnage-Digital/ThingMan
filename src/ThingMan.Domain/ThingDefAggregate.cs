@@ -1,18 +1,19 @@
+using MediatR;
 using ThingMan.Core;
 
 namespace ThingMan.Domain;
 
-public class ThingDefAggregate<TThingDef, TKey>
-    where TThingDef : IThingDef<TKey>
+public class ThingDefAggregate<TThingDef>
+    where TThingDef : IWritableThingDef
 {
-    private readonly IThingDefsStore<TThingDef, TKey> _store;
+    private readonly IThingDefsStore<TThingDef> _store;
 
-    public ThingDefAggregate(IThingDefsStore<TThingDef, TKey> store)
+    public ThingDefAggregate(IThingDefsStore<TThingDef> store, IMediator mediator)
     {
         _store = store;
     }
 
-    public async Task Create(TThingDef thingDef, CancellationToken cancellationToken = default)
+    public async Task CreateAsync(TThingDef thingDef, CancellationToken cancellationToken)
     {
         await _store.CreateAsync(thingDef, cancellationToken);
     }

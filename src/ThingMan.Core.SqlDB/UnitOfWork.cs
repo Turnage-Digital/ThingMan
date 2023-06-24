@@ -9,12 +9,12 @@ public class UnitOfWork<TContext> : IUnitOfWork
 
     private bool _disposed;
 
-    protected UnitOfWork(TContext dbContext)
+    public UnitOfWork(TContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
     {
         var transaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
 

@@ -15,12 +15,12 @@ public static class ThingDefsApi
             .RequireAuthorization();
 
         retval.MapPost("/create", async (
-                ThingDefView<Guid> thingDef,
+                ThingDefView thingDef,
                 IMediator mediator,
                 ClaimsPrincipal claimsPrincipal
             ) =>
             {
-                var command = new CreateThingDefCommand<Guid> { ThingDef = thingDef };
+                var command = new CreateThingDefCommand { ThingDef = thingDef };
                 var identity = (ClaimsIdentity)claimsPrincipal.Identity!;
 
                 command.UserId = identity.Claims
@@ -31,7 +31,7 @@ public static class ThingDefsApi
                 return Results.Created($"/thing-defs/{result.Id}", result);
             })
             .Produces(Status401Unauthorized)
-            .Produces<ThingDefView<Guid>>(Status201Created)
+            .Produces<ThingDefView>(Status201Created)
             .Produces(Status500InternalServerError);
 
         return retval;

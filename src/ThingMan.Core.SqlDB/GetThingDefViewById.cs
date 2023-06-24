@@ -4,21 +4,21 @@ using ThingMan.Core.SqlDB.Views;
 
 namespace ThingMan.Core.SqlDB;
 
-internal class GetThingDefViewById : IGetThingDefViewById<Guid>
+internal class GetThingDefViewById : IGetThingDefViewById
 {
     private readonly IMapper _mapper;
-    private readonly IThingDefsStore<ThingDefEntity, Guid> _thingDefsStore;
+    private readonly IThingDefsStore<ThingDefEntity> _thingDefsStore;
 
-    public GetThingDefViewById(IThingDefsStore<ThingDefEntity, Guid> thingDefsStore, IMapper mapper)
+    public GetThingDefViewById(IThingDefsStore<ThingDefEntity> thingDefsStore, IMapper mapper)
     {
         _thingDefsStore = thingDefsStore;
         _mapper = mapper;
     }
 
-    public async Task<IThingDef<Guid>> Get(Guid id, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyThingDef> GetAsync(string id, CancellationToken cancellationToken)
     {
         var entity = await _thingDefsStore.ReadAsync(id, cancellationToken);
-        var retval = _mapper.Map<ThingDefView<Guid>>(entity);
+        var retval = _mapper.Map<ThingDefView>(entity);
         return retval;
     }
 }

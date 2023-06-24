@@ -1,10 +1,8 @@
 using MediatR;
-using ThingMan.Core;
 
 namespace ThingMan.Domain.Events;
 
-public class ThingDefCreatedEvent<TThingDef, TKey> : INotification
-    where TThingDef : IThingDef<TKey>
+public class ThingDefCreatedEvent<TKey> : INotification
 {
-    public TThingDef ThingDef { get; set; } = default!;
+    public TKey Id { get; set; } = default!;
 }

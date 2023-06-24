@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ThingMan.Core.SqlDB.Entities;
 
 [Table("ThingDef")]
-public class ThingDefEntity : IThingDef<Guid>
+public class ThingDefEntity : IWritableThingDef
 {
     [Required]
     public string Name { get; set; } = null!;
@@ -28,5 +28,5 @@ public class ThingDefEntity : IThingDef<Guid>
 
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
+    public string Id { get; set; } = null!;
 }

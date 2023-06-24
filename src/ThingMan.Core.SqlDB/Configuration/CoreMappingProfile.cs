@@ -8,16 +8,17 @@ public class CoreMappingProfile : Profile
 {
     public CoreMappingProfile()
     {
-        CreateMap<ThingDefEntity, ThingDefView<Guid>>()
+        CreateMap<ThingDefView, ThingDefEntity>()
             .ReverseMap();
-
-        CreateMap<StatusDefEntity, StatusDefView>()
+        CreateMap<ThingDefView, IWritableThingDef>()
+            .As<ThingDefEntity>();
+        CreateMap<ThingDefEntity, IReadOnlyThingDef>()
+            .As<ThingDefView>();
+        CreateMap<StatusDefView, StatusDefEntity>()
             .ReverseMap();
-
-        CreateMap<NotificationDefEntity, NotificationDefView>()
+        CreateMap<NotificationDefView, NotificationDefEntity>()
             .ReverseMap();
-
-        CreateMap<PropertyDefEntity, PropertyDefView>()
+        CreateMap<PropertyDefView, PropertyDefEntity>()
             .ReverseMap();
     }
 }

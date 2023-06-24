@@ -1,6 +1,6 @@
 namespace ThingMan.Core;
 
-public interface IThingDef<TKey>
+public interface IThingDef
 {
-    TKey Id { get; set; }
+    string Id { get; set; }
 }

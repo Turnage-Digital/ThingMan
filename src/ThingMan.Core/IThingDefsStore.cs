@@ -1,9 +1,9 @@
 namespace ThingMan.Core;
 
-public interface IThingDefsStore<TThingDef, in TKey>
-    where TThingDef : IThingDef<TKey>
+public interface IThingDefsStore<TThingDef>
+    where TThingDef : IWritableThingDef
 {
-    Task<TThingDef?> ReadAsync(TKey id, CancellationToken cancellationToken);
+    Task<TThingDef?> ReadAsync(string id, CancellationToken cancellationToken);
 
     Task CreateAsync(TThingDef thingDef, CancellationToken cancellationToken);
 }

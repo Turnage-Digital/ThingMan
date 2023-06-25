@@ -9,12 +9,7 @@ public class ThingDefEntity : IWritableThingDef
     [Required]
     public string Name { get; set; } = null!;
 
-    [Required]
-    public string UserId { get; set; } = null!;
-
     public ICollection<StatusDefEntity> StatusDefs { get; set; } = null!;
-
-    public ICollection<NotificationDefEntity> NotificationDefs { get; set; } = null!;
 
     public PropertyDefEntity? PropertyDef1 { get; set; }
 

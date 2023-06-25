@@ -22,14 +22,21 @@ public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefComman
         _mapper = mapper;
     }
 
-    public async Task<IReadOnlyThingDef> Handle(CreateThingDefCommand request, CancellationToken cancellationToken)
+    public async Task<IReadOnlyThingDef> Handle(
+        CreateThingDefCommand request,
+        CancellationToken cancellationToken = default
+    )
     {
-        var readOnly = request.ThingDef;
-        var writable = _mapper.Map<IWritableThingDef>(readOnly);
-
-        var created = _thingDefAggregate.CreateAsync(writable, cancellationToken);
+        var created = await _thingDefAggregate.CreateAsync(
+            request.Name,
+            request.StatusDefs,
+            request.PropertyDef1,
+            request.PropertyDef2,
+            request.PropertyDef3,
+            request.PropertyDef4,
+            request.PropertyDef5,
+            cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
-
         var retval = _mapper.Map<IReadOnlyThingDef>(created);
         return retval;
     }

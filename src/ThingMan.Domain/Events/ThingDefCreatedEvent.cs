@@ -2,7 +2,9 @@ using MediatR;
 
 namespace ThingMan.Domain.Events;
 
-public class ThingDefCreatedEvent<TKey> : INotification
+public class ThingDefCreatedEvent : INotification
 {
-    public TKey Id { get; set; } = default!;
+    public string Id { get; set; } = null!;
+    
+    public string UserId { get; set; } = null!;
 }

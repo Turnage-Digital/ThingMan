@@ -1,13 +1,13 @@
-using System.Reflection;
 using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using ThingMan.App.Commands;
+using ThingMan.App.Extensions;
 using ThingMan.Core.SqlDB;
-using ThingMan.Core.SqlDB.Configuration;
+using ThingMan.Core.SqlDB.Entities;
 using ThingMan.Core.SqlDB.Extensions;
 using ThingMan.Domain;
+using ThingMan.Domain.Extensions;
 
 namespace ThingMan;
 
@@ -25,21 +25,16 @@ internal static class HostingExtensions
         {
             var connectionString = builder.Configuration
                 .GetConnectionString("DefaultConnection")!;
-            registry.AddSqlDB(connectionString);
+            registry.AddCoreSqlDB(connectionString);
 
-            registry.AddSingleton(typeof(ThingDefAggregate<>));
+            registry.AddDomain()
+                .AddThingManAggregate<ThingDefEntity>();
 
-            var appAssembly = Assembly.GetAssembly(typeof(CreateThingDefCommand))!;
-            var domainAssembly = Assembly.GetAssembly(typeof(ThingDefAggregate<>))!;
-            registry.AddMediatR(config =>
-                config.RegisterServicesFromAssemblies(appAssembly, domainAssembly));
+            registry.AddApp();
 
             registry
                 .AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            registry.AddAutoMapper(config =>
-                config.AddProfile<CoreMappingProfile>());
 
             registry
                 .ConfigureApplicationCookie(options =>

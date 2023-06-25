@@ -11,20 +11,20 @@ internal class ThingDefsStore : IThingDefsStore<IWritableThingDef>
         _dbContext = dbContext;
     }
 
-    public async Task<IWritableThingDef?> ReadAsync(string id, CancellationToken cancellationToken)
+    public async Task<IWritableThingDef?> ReadAsync(string id, CancellationToken cancellationToken = default)
     {
         var retval = await _dbContext.ThingDefs
             .FindAsync(new object?[] { id }, cancellationToken);
         return retval;
     }
 
-    public Task<IWritableThingDef> InitAsync(CancellationToken cancellationToken)
+    public Task<IWritableThingDef> InitAsync(CancellationToken cancellationToken = default)
     {
         var retval = new ThingDefEntity();
         return Task.FromResult((IWritableThingDef)retval);
     }
 
-    public async Task CreateAsync(IWritableThingDef entity, CancellationToken cancellationToken)
+    public async Task CreateAsync(IWritableThingDef entity, CancellationToken cancellationToken = default)
     {
         await _dbContext.ThingDefs.AddAsync((ThingDefEntity)entity, cancellationToken);
     }

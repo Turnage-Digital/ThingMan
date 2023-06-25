@@ -15,14 +15,12 @@ public static class ThingDefsApi
             .RequireAuthorization();
 
         retval.MapPost("/create", async (
-                ThingDefView thingDef,
+                CreateThingDefCommand command,
                 IMediator mediator,
                 ClaimsPrincipal claimsPrincipal
             ) =>
             {
-                var command = new CreateThingDefCommand { ThingDef = thingDef };
                 var identity = (ClaimsIdentity)claimsPrincipal.Identity!;
-
                 command.UserId = identity.Claims
                     .Single(claim => claim.Type == ClaimTypes.NameIdentifier)
                     .Value;

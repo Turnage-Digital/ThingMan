@@ -9,12 +9,12 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddDomain(this IServiceCollection services)
     {
         var assembly = Assembly.GetAssembly(typeof(ServiceCollectionExtensions))!;
-        services.AddMediatR(config => 
+        services.AddMediatR(config =>
             config.RegisterServicesFromAssembly(assembly));
         services.AddScoped<IUserContext, UserContext>();
         return services;
     }
-    
+
     public static IServiceCollection AddThingManAggregate<TThingDef>(this IServiceCollection services)
         where TThingDef : IWritableThingDef
     {

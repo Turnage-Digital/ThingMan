@@ -8,8 +8,8 @@ public class ThingDefAggregate<TThingDef>
     where TThingDef : IWritableThingDef
 {
     private readonly IMediator _mediator;
-    private readonly IUserContext _userContext;
     private readonly IThingDefsStore<TThingDef> _store;
+    private readonly IUserContext _userContext;
 
     public ThingDefAggregate(IThingDefsStore<TThingDef> store, IMediator mediator, IUserContext userContext)
     {

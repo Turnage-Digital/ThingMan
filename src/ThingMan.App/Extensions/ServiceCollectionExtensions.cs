@@ -8,7 +8,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddApp(this IServiceCollection services)
     {
         var assembly = Assembly.GetAssembly(typeof(ServiceCollectionExtensions))!;
-        services.AddMediatR(config => 
+        services.AddMediatR(config =>
             config.RegisterServicesFromAssembly(assembly));
         return services;
     }

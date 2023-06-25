@@ -6,7 +6,6 @@ using ThingMan.App.Extensions;
 using ThingMan.Core.SqlDB;
 using ThingMan.Core.SqlDB.Entities;
 using ThingMan.Core.SqlDB.Extensions;
-using ThingMan.Domain;
 using ThingMan.Domain.Extensions;
 
 namespace ThingMan;

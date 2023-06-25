@@ -15,7 +15,7 @@ public static class ServiceCollectionExtensions
 
         services.AddRepositories();
         services.AddViews();
-        
+
         services.AddAutoMapper(config =>
             config.AddProfile<CoreMappingProfile>());
 

@@ -10,7 +10,7 @@ public class CoreMappingProfile : Profile
     public CoreMappingProfile()
     {
         CreateMap<ThingDefEntity, ThingDefView>();
-        
+
         CreateMap<ThingDefEntity, IReadOnlyThingDef>()
             .As<ThingDefView>();
 

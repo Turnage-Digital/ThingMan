@@ -18,6 +18,12 @@ internal class ThingDefsStore : IThingDefsStore<IWritableThingDef>
         return retval;
     }
 
+    public Task<IWritableThingDef> InitAsync(CancellationToken cancellationToken)
+    {
+        var retval = new ThingDefEntity();
+        return Task.FromResult((IWritableThingDef)retval);
+    }
+
     public async Task CreateAsync(IWritableThingDef entity, CancellationToken cancellationToken)
     {
         await _dbContext.ThingDefs.AddAsync((ThingDefEntity)entity, cancellationToken);

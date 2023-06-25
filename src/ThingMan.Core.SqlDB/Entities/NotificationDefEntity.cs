@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ThingMan.Core.SqlDB.Entities;
 
-[Table("PropertyDef")]
+[Table("NotificationDef")]
 public class NotificationDefEntity
 {
     [Key]

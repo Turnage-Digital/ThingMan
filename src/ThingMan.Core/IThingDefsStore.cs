@@ -5,5 +5,7 @@ public interface IThingDefsStore<TThingDef>
 {
     Task<TThingDef?> ReadAsync(string id, CancellationToken cancellationToken);
 
+    Task<TThingDef> InitAsync(CancellationToken cancellationToken);
+    
     Task CreateAsync(TThingDef thingDef, CancellationToken cancellationToken);
 }

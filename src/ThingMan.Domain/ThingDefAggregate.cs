@@ -30,6 +30,14 @@ public class ThingDefAggregate<TThingDef>
     )
     {
         var retval = await _store.InitAsync(cancellationToken);
+        
+        await _store.SetNameAsync(retval, name, cancellationToken);
+        await _store.SetStatusDefsAsync(retval, statusDefs, cancellationToken);
+        await _store.SetPropertyDef1Async(retval, propertyDef1, cancellationToken);
+        await _store.SetPropertyDef2Async(retval, propertyDef2, cancellationToken);
+        await _store.SetPropertyDef3Async(retval, propertyDef3, cancellationToken);
+        await _store.SetPropertyDef4Async(retval, propertyDef4, cancellationToken);
+        await _store.SetPropertyDef5Async(retval, propertyDef5, cancellationToken);
 
         // setters
 

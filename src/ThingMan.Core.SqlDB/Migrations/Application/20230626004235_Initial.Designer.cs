@@ -11,14 +11,14 @@ using ThingMan.Core.SqlDB;
 namespace ThingMan.Core.SqlDB.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230521202600_Initial")]
+    [Migration("20230626004235_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {

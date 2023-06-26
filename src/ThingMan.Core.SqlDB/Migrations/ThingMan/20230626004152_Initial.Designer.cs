@@ -11,41 +11,16 @@ using ThingMan.Core.SqlDB;
 namespace ThingMan.Core.SqlDB.Migrations.ThingMan
 {
     [DbContext(typeof(ThingManDbContext))]
-    [Migration("20230606125401_Initial")]
+    [Migration("20230626004152_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
 
-            modelBuilder.Entity("ThingMan.Domain.NotificationDef", b =>
-                {
-                    b.Property<Guid?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<Guid?>("ThingDefId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ThingDefId");
-
-                    b.ToTable("NotificationDef");
-                });
-
-            modelBuilder.Entity("ThingMan.Domain.PropertyDef", b =>
+            modelBuilder.Entity("ThingMan.Core.SqlDB.Entities.PropertyDefEntity", b =>
                 {
                     b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,15 +30,16 @@ namespace ThingMan.Core.SqlDB.Migrations.ThingMan
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("PropertyDef");
                 });
 
-            modelBuilder.Entity("ThingMan.Domain.StatusDef", b =>
+            modelBuilder.Entity("ThingMan.Core.SqlDB.Entities.StatusDefEntity", b =>
                 {
                     b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
@@ -73,19 +49,19 @@ namespace ThingMan.Core.SqlDB.Migrations.ThingMan
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("ThingDefId")
+                    b.Property<string>("ThingDefEntityId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ThingDefId");
+                    b.HasIndex("ThingDefEntityId");
 
                     b.ToTable("StatusDef");
                 });
 
-            modelBuilder.Entity("ThingMan.Domain.ThingDef", b =>
+            modelBuilder.Entity("ThingMan.Core.SqlDB.Entities.ThingDefEntity", b =>
                 {
-                    b.Property<Guid?>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -108,10 +84,6 @@ namespace ThingMan.Core.SqlDB.Migrations.ThingMan
                     b.Property<Guid?>("PropertyDef5Id")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PropertyDef1Id");
@@ -124,42 +96,35 @@ namespace ThingMan.Core.SqlDB.Migrations.ThingMan
 
                     b.HasIndex("PropertyDef5Id");
 
-                    b.ToTable("ThingDefs");
+                    b.ToTable("ThingDef");
                 });
 
-            modelBuilder.Entity("ThingMan.Domain.NotificationDef", b =>
+            modelBuilder.Entity("ThingMan.Core.SqlDB.Entities.StatusDefEntity", b =>
                 {
-                    b.HasOne("ThingMan.Domain.ThingDef", null)
-                        .WithMany("NotificationDefs")
-                        .HasForeignKey("ThingDefId");
-                });
-
-            modelBuilder.Entity("ThingMan.Domain.StatusDef", b =>
-                {
-                    b.HasOne("ThingMan.Domain.ThingDef", null)
+                    b.HasOne("ThingMan.Core.SqlDB.Entities.ThingDefEntity", null)
                         .WithMany("StatusDefs")
-                        .HasForeignKey("ThingDefId");
+                        .HasForeignKey("ThingDefEntityId");
                 });
 
-            modelBuilder.Entity("ThingMan.Domain.ThingDef", b =>
+            modelBuilder.Entity("ThingMan.Core.SqlDB.Entities.ThingDefEntity", b =>
                 {
-                    b.HasOne("ThingMan.Domain.PropertyDef", "PropertyDef1")
+                    b.HasOne("ThingMan.Core.SqlDB.Entities.PropertyDefEntity", "PropertyDef1")
                         .WithMany()
                         .HasForeignKey("PropertyDef1Id");
 
-                    b.HasOne("ThingMan.Domain.PropertyDef", "PropertyDef2")
+                    b.HasOne("ThingMan.Core.SqlDB.Entities.PropertyDefEntity", "PropertyDef2")
                         .WithMany()
                         .HasForeignKey("PropertyDef2Id");
 
-                    b.HasOne("ThingMan.Domain.PropertyDef", "PropertyDef3")
+                    b.HasOne("ThingMan.Core.SqlDB.Entities.PropertyDefEntity", "PropertyDef3")
                         .WithMany()
                         .HasForeignKey("PropertyDef3Id");
 
-                    b.HasOne("ThingMan.Domain.PropertyDef", "PropertyDef4")
+                    b.HasOne("ThingMan.Core.SqlDB.Entities.PropertyDefEntity", "PropertyDef4")
                         .WithMany()
                         .HasForeignKey("PropertyDef4Id");
 
-                    b.HasOne("ThingMan.Domain.PropertyDef", "PropertyDef5")
+                    b.HasOne("ThingMan.Core.SqlDB.Entities.PropertyDefEntity", "PropertyDef5")
                         .WithMany()
                         .HasForeignKey("PropertyDef5Id");
 
@@ -174,10 +139,8 @@ namespace ThingMan.Core.SqlDB.Migrations.ThingMan
                     b.Navigation("PropertyDef5");
                 });
 
-            modelBuilder.Entity("ThingMan.Domain.ThingDef", b =>
+            modelBuilder.Entity("ThingMan.Core.SqlDB.Entities.ThingDefEntity", b =>
                 {
-                    b.Navigation("NotificationDefs");
-
                     b.Navigation("StatusDefs");
                 });
 #pragma warning restore 612, 618

@@ -21,9 +21,4 @@ internal class EntityStore<TEntity>
     {
         return _dbSet.FindAsync(new[] { id }, cancellationToken);
     }
-
-    public void Delete(TEntity entity)
-    {
-        _dbSet.Remove(entity);
-    }
 }

@@ -2,7 +2,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Serilog;
 
-namespace ThingMan;
+namespace ThingMan.Application.SqlDB;
 
 public class SeedData
 {

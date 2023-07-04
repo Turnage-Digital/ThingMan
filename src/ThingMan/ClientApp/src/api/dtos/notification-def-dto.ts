@@ -1,5 +1,5 @@
 export interface NotificationDefDto {
-    type: string;
-    isActive: boolean;
-    userId: string | null;
+  type: string;
+  isActive: boolean;
+  userId: string | null;
 }

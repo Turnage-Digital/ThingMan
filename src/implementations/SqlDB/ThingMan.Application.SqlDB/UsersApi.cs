@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-namespace ThingMan;
+namespace ThingMan.Application.SqlDB;
 
 public static class UsersApi
 {

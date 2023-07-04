@@ -10,13 +10,11 @@ public class ThingDefAggregate<TThingDef>
 {
     private readonly IMediator _mediator;
     private readonly IThingDefsStore<TThingDef> _store;
-    private readonly IUserContext _userContext;
 
-    public ThingDefAggregate(IThingDefsStore<TThingDef> store, IMediator mediator, IUserContext userContext)
+    public ThingDefAggregate(IThingDefsStore<TThingDef> store, IMediator mediator)
     {
         _store = store;
         _mediator = mediator;
-        _userContext = userContext;
     }
 
     public async Task<TThingDef> CreateAsync(
@@ -42,8 +40,7 @@ public class ThingDefAggregate<TThingDef>
 
         await _store.CreateAsync(retval, cancellationToken);
 
-        await _mediator.Publish(new ThingDefCreatedEvent { Id = retval.Id, UserId = _userContext.UserId },
-            cancellationToken);
+        await _mediator.Publish(new ThingDefCreatedEvent { Id = retval.Id }, cancellationToken);
 
         return retval;
     }

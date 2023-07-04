@@ -7,8 +7,7 @@ public class ThingDefCreatedEventHandler : INotificationHandler<ThingDefCreatedE
 {
     public Task Handle(ThingDefCreatedEvent notification, CancellationToken cancellationToken = default)
     {
-        Log.Information("ThingDefCreatedEvent: {Id} {UserId}",
-            notification.Id, notification.UserId);
+        Log.Information("ThingDefCreatedEvent: {Id}", notification.Id);
         return Task.CompletedTask;
     }
 }

@@ -67,8 +67,6 @@ internal static class HostingExtensions
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI();
-
-            SeedData.EnsureSeedData(app);
         }
         else
         {
@@ -84,8 +82,7 @@ internal static class HostingExtensions
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.MapThingDefsApi();
-        app.MapUserApi();
+        app.UseApp();
 
         return app;
     }

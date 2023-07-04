@@ -11,7 +11,7 @@ using ThingMan.Core.SqlDB;
 namespace ThingMan.Core.SqlDB.Migrations.ThingMan
 {
     [DbContext(typeof(ThingManDbContext))]
-    [Migration("20230626004152_Initial")]
+    [Migration("20230704192413_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

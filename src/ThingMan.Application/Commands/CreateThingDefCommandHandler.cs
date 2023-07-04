@@ -14,7 +14,7 @@ public class CreateThingDefCommandHandler<TReadOnlyThingDef, TWritableThingDef>
     private readonly ThingDefAggregate<TWritableThingDef> _thingDefAggregate;
     private readonly IUnitOfWork _unitOfWork;
 
-    public CreateThingDefCommandHandler(
+    protected CreateThingDefCommandHandler(
         ThingDefAggregate<TWritableThingDef> thingDefAggregate,
         IUnitOfWork unitOfWork,
         IMapper mapper

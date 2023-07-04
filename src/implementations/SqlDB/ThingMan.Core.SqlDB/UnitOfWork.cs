@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ThingMan.Core.SqlDB;
 
-public class UnitOfWork<TContext> : IUnitOfWork
+internal class UnitOfWork<TContext> : IUnitOfWork
     where TContext : DbContext
 {
     private readonly TContext _dbContext;

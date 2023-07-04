@@ -8,7 +8,9 @@ public class GetThingDefByIdQueryHandler<TThingDef> : IRequestHandler<GetThingDe
 {
     private readonly IGetReadOnlyThingDefById<TThingDef> _getReadOnlyThingDefById;
 
-    public GetThingDefByIdQueryHandler(IGetReadOnlyThingDefById<TThingDef> getReadOnlyThingDefById)
+    protected GetThingDefByIdQueryHandler(
+        IGetReadOnlyThingDefById<TThingDef> getReadOnlyThingDefById
+    )
     {
         _getReadOnlyThingDefById = getReadOnlyThingDefById;
     }

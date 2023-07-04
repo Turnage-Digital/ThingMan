@@ -1,6 +1,4 @@
 using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
-using ThingMan.Core;
 
 namespace ThingMan.Application.SqlDB.Extensions;
 
@@ -11,7 +9,6 @@ public static class ServiceCollectionExtensions
         var assembly = Assembly.GetAssembly(typeof(ServiceCollectionExtensions))!;
         services.AddMediatR(config =>
             config.RegisterServicesFromAssembly(assembly));
-        services.AddScoped<IUserContext, UserContext>();
         return services;
     }
 }

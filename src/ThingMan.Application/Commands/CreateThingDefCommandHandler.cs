@@ -30,8 +30,7 @@ public class CreateThingDefCommandHandler<TReadOnlyThingDef, TWritableThingDef>
         CancellationToken cancellationToken = default
     )
     {
-        var created = await _thingDefAggregate.CreateAsync(
-            request.Name,
+        var created = await _thingDefAggregate.CreateAsync(request.Name,
             request.StatusDefs,
             request.PropertyDef1,
             request.PropertyDef2,

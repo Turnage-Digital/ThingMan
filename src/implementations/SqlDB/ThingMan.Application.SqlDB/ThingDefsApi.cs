@@ -4,7 +4,7 @@ using ThingMan.Application.Commands;
 using ThingMan.Core.SqlDB.Views;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-namespace ThingMan;
+namespace ThingMan.Application.SqlDB;
 
 public static class ThingDefsApi
 {

@@ -7,10 +7,10 @@
         <IsPackable>true</IsPackable>
         <OutputType>Library</OutputType>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <ProjectReference Include="..\..\..\ThingMan.Application\ThingMan.Application.csproj" />
-        <ProjectReference Include="..\ThingMan.Domain.SqlDB\ThingMan.Domain.SqlDB.csproj" />
+        <ProjectReference Include="..\..\..\ThingMan.Application\ThingMan.Application.csproj"/>
+        <ProjectReference Include="..\ThingMan.Domain.SqlDB\ThingMan.Domain.SqlDB.csproj"/>
     </ItemGroup>
 
 </Project>

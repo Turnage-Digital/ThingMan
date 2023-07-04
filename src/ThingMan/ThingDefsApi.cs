@@ -1,6 +1,6 @@
 using System.Security.Claims;
 using MediatR;
-using ThingMan.App.Commands;
+using ThingMan.Application.Commands;
 using ThingMan.Core.SqlDB.Views;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
@@ -15,7 +15,7 @@ public static class ThingDefsApi
             .RequireAuthorization();
 
         retval.MapPost("/create", async (
-                CreateThingDefCommand command,
+                CreateThingDefCommand<ThingDefView> command,
                 IMediator mediator,
                 ClaimsPrincipal claimsPrincipal
             ) =>

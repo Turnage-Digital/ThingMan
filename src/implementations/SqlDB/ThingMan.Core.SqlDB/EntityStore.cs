@@ -5,12 +5,10 @@ namespace ThingMan.Core.SqlDB;
 internal class EntityStore<TEntity>
     where TEntity : class
 {
-    private readonly DbContext _dbContext;
     private readonly DbSet<TEntity> _dbSet;
 
     public EntityStore(DbContext dbContext)
     {
-        _dbContext = dbContext;
         _dbSet = dbContext.Set<TEntity>();
     }
 
@@ -21,12 +19,7 @@ internal class EntityStore<TEntity>
 
     public ValueTask<TEntity?> ReadAsync(object id, CancellationToken cancellationToken = default)
     {
-        return _dbSet.FindAsync(new[] { id }, cancellationToken: cancellationToken);
-    }
-
-    public void Update(TEntity entity)
-    {
-        _dbContext.Entry(entity).State = EntityState.Modified;
+        return _dbSet.FindAsync(new[] { id }, cancellationToken);
     }
 
     public void Delete(TEntity entity)

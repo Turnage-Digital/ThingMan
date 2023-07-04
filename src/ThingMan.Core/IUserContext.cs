@@ -1,4 +1,4 @@
-namespace ThingMan.Domain;
+namespace ThingMan.Core;
 
 public interface IUserContext
 {

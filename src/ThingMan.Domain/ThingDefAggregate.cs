@@ -1,6 +1,7 @@
 using MediatR;
 using ThingMan.Core;
 using ThingMan.Core.ValueObjects;
+using ThingMan.Domain.Events;
 
 namespace ThingMan.Domain;
 
@@ -30,7 +31,7 @@ public class ThingDefAggregate<TThingDef>
     )
     {
         var retval = await _store.InitAsync(cancellationToken);
-        
+
         await _store.SetNameAsync(retval, name, cancellationToken);
         await _store.SetStatusDefsAsync(retval, statusDefs, cancellationToken);
         await _store.SetPropertyDef1Async(retval, propertyDef1, cancellationToken);
@@ -39,11 +40,10 @@ public class ThingDefAggregate<TThingDef>
         await _store.SetPropertyDef4Async(retval, propertyDef4, cancellationToken);
         await _store.SetPropertyDef5Async(retval, propertyDef5, cancellationToken);
 
-        // setters
-
         await _store.CreateAsync(retval, cancellationToken);
 
-        // events
+        await _mediator.Publish(new ThingDefCreatedEvent { Id = retval.Id, UserId = _userContext.UserId },
+            cancellationToken);
 
         return retval;
     }

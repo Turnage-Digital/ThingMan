@@ -3,16 +3,19 @@ using MediatR;
 using ThingMan.Core;
 using ThingMan.Domain;
 
-namespace ThingMan.App.Commands;
+namespace ThingMan.Application.Commands;
 
-public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefCommand, IReadOnlyThingDef>
+public class CreateThingDefCommandHandler<TReadOnlyThingDef, TWritableThingDef>
+    : IRequestHandler<CreateThingDefCommand<TReadOnlyThingDef>, TReadOnlyThingDef>
+    where TReadOnlyThingDef : IReadOnlyThingDef
+    where TWritableThingDef : IWritableThingDef
 {
     private readonly IMapper _mapper;
-    private readonly ThingDefAggregate<IWritableThingDef> _thingDefAggregate;
+    private readonly ThingDefAggregate<TWritableThingDef> _thingDefAggregate;
     private readonly IUnitOfWork _unitOfWork;
 
     public CreateThingDefCommandHandler(
-        ThingDefAggregate<IWritableThingDef> thingDefAggregate,
+        ThingDefAggregate<TWritableThingDef> thingDefAggregate,
         IUnitOfWork unitOfWork,
         IMapper mapper
     )
@@ -22,8 +25,8 @@ public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefComman
         _mapper = mapper;
     }
 
-    public async Task<IReadOnlyThingDef> Handle(
-        CreateThingDefCommand request,
+    public async Task<TReadOnlyThingDef> Handle(
+        CreateThingDefCommand<TReadOnlyThingDef> request,
         CancellationToken cancellationToken = default
     )
     {
@@ -37,7 +40,7 @@ public class CreateThingDefCommandHandler : IRequestHandler<CreateThingDefComman
             request.PropertyDef5,
             cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
-        var retval = _mapper.Map<IReadOnlyThingDef>(created);
+        var retval = _mapper.Map<TReadOnlyThingDef>(created);
         return retval;
     }
 }

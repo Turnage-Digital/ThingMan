@@ -37,8 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ThingMan.App\ThingMan.App.csproj"/>
-        <ProjectReference Include="..\ThingMan.Core.SqlDB\ThingMan.Core.SqlDB.csproj"/>
+        <ProjectReference Include="..\implementations\SqlDB\ThingMan.Application.SqlDB\ThingMan.Application.SqlDB.csproj"/>
     </ItemGroup>
 
     <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">

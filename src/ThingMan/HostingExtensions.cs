@@ -2,11 +2,10 @@ using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using ThingMan.App.Extensions;
+using ThingMan.Application.SqlDB.Extensions;
 using ThingMan.Core.SqlDB;
-using ThingMan.Core.SqlDB.Entities;
 using ThingMan.Core.SqlDB.Extensions;
-using ThingMan.Domain.Extensions;
+using ThingMan.Domain.SqlDB.Extensions;
 
 namespace ThingMan;
 
@@ -25,11 +24,8 @@ internal static class HostingExtensions
             var connectionString = builder.Configuration
                 .GetConnectionString("DefaultConnection")!;
             registry.AddCoreSqlDB(connectionString);
-
-            registry.AddDomain()
-                .AddThingManAggregate<ThingDefEntity>();
-
-            registry.AddApp();
+            registry.AddDomainSqlDB();
+            registry.AddApplicationSqlDB();
 
             registry
                 .AddDefaultIdentity<IdentityUser>()
@@ -46,7 +42,8 @@ internal static class HostingExtensions
 
             if (builder.Environment.IsDevelopment())
             {
-                registry.AddEndpointsApiExplorer()
+                registry
+                    .AddEndpointsApiExplorer()
                     .AddSwaggerGen(options =>
                     {
                         options.SwaggerDoc("v1", new OpenApiInfo

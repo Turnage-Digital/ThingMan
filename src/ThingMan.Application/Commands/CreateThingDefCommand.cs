@@ -3,9 +3,10 @@ using Newtonsoft.Json;
 using ThingMan.Core;
 using ThingMan.Core.ValueObjects;
 
-namespace ThingMan.App.Commands;
+namespace ThingMan.Application.Commands;
 
-public class CreateThingDefCommand : IRequest<IReadOnlyThingDef>
+public class CreateThingDefCommand<TThingDef> : IRequest<TThingDef>
+    where TThingDef : IReadOnlyThingDef
 {
     [JsonIgnore]
     public string UserId { get; set; } = null!;

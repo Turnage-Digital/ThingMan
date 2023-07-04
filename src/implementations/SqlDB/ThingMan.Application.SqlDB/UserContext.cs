@@ -1,6 +1,7 @@
 using System.Security.Claims;
+using ThingMan.Core;
 
-namespace ThingMan.Domain;
+namespace ThingMan.Application.SqlDB;
 
 public class UserContext : IUserContext
 {

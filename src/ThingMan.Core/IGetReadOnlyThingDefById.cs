@@ -1,6 +1,8 @@
 namespace ThingMan.Core;
 
-public interface IGetReadOnlyThingDefById
+public interface IGetReadOnlyThingDefById<TThingDef>
+    where TThingDef : IReadOnlyThingDef
+
 {
-    Task<IReadOnlyThingDef> GetAsync(string id, CancellationToken cancellationToken = default);
+    Task<TThingDef> GetAsync(string id, CancellationToken cancellationToken = default);
 }

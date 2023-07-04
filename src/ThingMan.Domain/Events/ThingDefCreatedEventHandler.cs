@@ -3,7 +3,7 @@ using Serilog;
 
 namespace ThingMan.Domain.Events;
 
-internal class ThingDefCreatedEventHandler<TKey> : INotificationHandler<ThingDefCreatedEvent>
+public class ThingDefCreatedEventHandler : INotificationHandler<ThingDefCreatedEvent>
 {
     public Task Handle(ThingDefCreatedEvent notification, CancellationToken cancellationToken = default)
     {

@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ThingMan.Core.SqlDB.Configuration;
+using ThingMan.Core.SqlDB.Entities;
+using ThingMan.Core.SqlDB.Views;
 
 namespace ThingMan.Core.SqlDB.Extensions;
 
@@ -24,13 +26,13 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IThingDefsStore<IWritableThingDef>, ThingDefsStore>();
+        services.AddScoped<IThingDefsStore<ThingDefEntity>, ThingDefsStore>();
         return services;
     }
 
     public static IServiceCollection AddViews(this IServiceCollection services)
     {
-        services.AddScoped<IGetReadOnlyThingDefById, GetReadOnlyThingDefById>();
+        services.AddScoped<IGetReadOnlyThingDefById<ThingDefView>, GetReadOnlyThingDefById>();
         return services;
     }
 }

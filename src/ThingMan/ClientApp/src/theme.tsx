@@ -1,22 +1,22 @@
-import {createTheme} from "@mui/material";
+import { createTheme } from "@mui/material";
 
 const rootElement = document.getElementById("root");
 const theme = createTheme({
-    palette: {
-        primary: {
-            main: "#0c95bf",
-        },
-        secondary: {
-            main: "#0c95bf",
-        },
-        background: {
-            default: "#F5F5F5",
-        },
+  palette: {
+    primary: {
+      main: "#0c95bf",
     },
-    typography: {
-        fontSize: 12,
-        fontFamily: "Inter, sans-serif",
+    secondary: {
+      main: "#0c95bf",
     },
+    background: {
+      default: "#F5F5F5",
+    },
+  },
+  typography: {
+    fontSize: 12,
+    fontFamily: "Inter, sans-serif",
+  },
 });
 
 export default theme;

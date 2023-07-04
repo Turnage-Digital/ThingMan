@@ -1,4 +1,4 @@
 export interface StatusDefDto {
-    name: string;
-    id: string | null;
+  name: string;
+  id: string | null;
 }

@@ -7,6 +7,6 @@ public record PropertyDef
     [JsonProperty("name")]
     public string Name { get; set; } = null!;
 
-    [JsonProperty("propertyType")]
-    public string PropertyType { get; set; } = null!;
+    [JsonProperty("type")]
+    public string Type { get; set; } = null!;
 }

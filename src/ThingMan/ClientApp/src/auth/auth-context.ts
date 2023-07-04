@@ -1,11 +1,11 @@
 import { createContext } from "react";
 
-import { ClaimDto } from "../api/dtos";
+import { Claim } from "../api/models";
 
 interface Props {
   loading: boolean;
   signedIn: boolean;
-  claims: ClaimDto[];
+  claims: Claim[];
   signIn: (username: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
   error: string | null;

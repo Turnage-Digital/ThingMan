@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { SignIn, useAuth } from "./auth";
+import { SignInForm, useAuth } from "./auth";
 import { ContentSection, SideSection, TopSection } from "./layout";
 import Loading from "./loading";
 
@@ -32,30 +32,27 @@ const Shell = () => {
     setDrawerOpen(!drawerOpen);
   };
 
+  let content: ReactElement;
   if (loading) {
-    return <Loading />;
+    content = <Loading />;
+  } else if (signedIn) {
+    content = (
+      <>
+        <TopSection onDrawerToggle={handleDrawerToggle} />
+        <SideSection
+          drawerOpen={drawerOpen}
+          onDrawerToggle={handleDrawerToggle}
+          selectedRoute={selectedRoute}
+          onRouteSelected={handleRouteSelection}
+        />
+        <ContentSection />
+      </>
+    );
+  } else {
+    content = <SignInForm />;
   }
 
-  if (!signedIn) {
-    return <SignIn />;
-  }
-
-  return (
-    <Box
-      sx={{
-        display: "flex",
-      }}
-    >
-      <TopSection onDrawerToggle={handleDrawerToggle} />
-      <SideSection
-        drawerOpen={drawerOpen}
-        onDrawerToggle={handleDrawerToggle}
-        selectedRoute={selectedRoute}
-        onRouteSelected={handleRouteSelection}
-      />
-      <ContentSection />
-    </Box>
-  );
+  return <Box sx={{ display: "flex" }}>{content}</Box>;
 };
 
 export default Shell;

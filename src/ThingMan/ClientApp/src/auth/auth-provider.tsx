@@ -1,7 +1,7 @@
 import React, { FC, PropsWithChildren, useMemo, useState } from "react";
 
 import { IUserApi } from "../api";
-import { ClaimDto } from "../api/dtos";
+import { Claim } from "../api/models";
 
 import AuthContext from "./auth-context";
 
@@ -10,7 +10,7 @@ type Props = PropsWithChildren<{ userApi: IUserApi }>;
 const AuthProvider: FC<Props> = ({ children, userApi }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [signedIn, setSignedIn] = useState<boolean>(false);
-  const [claims, setClaims] = useState<ClaimDto[]>([]);
+  const [claims, setClaims] = useState<Claim[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const authContextValue = useMemo(() => {

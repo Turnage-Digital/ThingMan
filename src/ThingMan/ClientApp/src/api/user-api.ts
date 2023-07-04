@@ -1,9 +1,9 @@
-import { ClaimDto } from "./dtos";
+import { Claim } from "./models";
 
 interface IUserApi {
   signIn(username: string, password: string): Promise<{ succeeded: boolean }>;
 
-  getClaims(): Promise<ClaimDto[]>;
+  getClaims(): Promise<Claim[]>;
 
   signOut(): Promise<void>;
 }
@@ -35,7 +35,7 @@ class UserApi implements IUserApi {
     return retval;
   }
 
-  public async getClaims(): Promise<ClaimDto[]> {
+  public async getClaims(): Promise<Claim[]> {
     const request = new Request(`${this.baseUrl}/claims`, {
       headers: new Headers({
         "Content-Type": "application/json",

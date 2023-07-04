@@ -70,7 +70,7 @@ internal class ThingDefsStore : IThingDefsStore<ThingDefEntity>
             thingDef.PropertyDef1 = new PropertyDefEntity
             {
                 Name = propertyDef.Name,
-                Type = propertyDef.PropertyType
+                Type = propertyDef.Type
             };
         }
         else
@@ -84,7 +84,7 @@ internal class ThingDefsStore : IThingDefsStore<ThingDefEntity>
     public Task<PropertyDef?> GetPropertyDef1Async(ThingDefEntity thingDef, CancellationToken cancellationToken)
     {
         var prop = thingDef.PropertyDef1;
-        var retval = prop is not null ? new PropertyDef { Name = prop.Name, PropertyType = prop.Type } : null;
+        var retval = prop is not null ? new PropertyDef { Name = prop.Name, Type = prop.Type } : null;
         return Task.FromResult(retval);
     }
 
@@ -99,7 +99,7 @@ internal class ThingDefsStore : IThingDefsStore<ThingDefEntity>
             thingDef.PropertyDef2 = new PropertyDefEntity
             {
                 Name = propertyDef.Name,
-                Type = propertyDef.PropertyType
+                Type = propertyDef.Type
             };
         }
         else
@@ -113,7 +113,7 @@ internal class ThingDefsStore : IThingDefsStore<ThingDefEntity>
     public Task<PropertyDef?> GetPropertyDef2Async(ThingDefEntity thingDef, CancellationToken cancellationToken)
     {
         var prop = thingDef.PropertyDef2;
-        var retval = prop is not null ? new PropertyDef { Name = prop.Name, PropertyType = prop.Type } : null;
+        var retval = prop is not null ? new PropertyDef { Name = prop.Name, Type = prop.Type } : null;
         return Task.FromResult(retval);
     }
 
@@ -128,7 +128,7 @@ internal class ThingDefsStore : IThingDefsStore<ThingDefEntity>
             thingDef.PropertyDef3 = new PropertyDefEntity
             {
                 Name = propertyDef.Name,
-                Type = propertyDef.PropertyType
+                Type = propertyDef.Type
             };
         }
         else
@@ -142,7 +142,7 @@ internal class ThingDefsStore : IThingDefsStore<ThingDefEntity>
     public Task<PropertyDef?> GetPropertyDef3Async(ThingDefEntity thingDef, CancellationToken cancellationToken)
     {
         var prop = thingDef.PropertyDef3;
-        var retval = prop is not null ? new PropertyDef { Name = prop.Name, PropertyType = prop.Type } : null;
+        var retval = prop is not null ? new PropertyDef { Name = prop.Name, Type = prop.Type } : null;
         return Task.FromResult(retval);
     }
 
@@ -157,7 +157,7 @@ internal class ThingDefsStore : IThingDefsStore<ThingDefEntity>
             thingDef.PropertyDef4 = new PropertyDefEntity
             {
                 Name = propertyDef.Name,
-                Type = propertyDef.PropertyType
+                Type = propertyDef.Type
             };
         }
         else
@@ -171,7 +171,7 @@ internal class ThingDefsStore : IThingDefsStore<ThingDefEntity>
     public Task<PropertyDef?> GetPropertyDef4Async(ThingDefEntity thingDef, CancellationToken cancellationToken)
     {
         var prop = thingDef.PropertyDef4;
-        var retval = prop is not null ? new PropertyDef { Name = prop.Name, PropertyType = prop.Type } : null;
+        var retval = prop is not null ? new PropertyDef { Name = prop.Name, Type = prop.Type } : null;
         return Task.FromResult(retval);
     }
 
@@ -186,7 +186,7 @@ internal class ThingDefsStore : IThingDefsStore<ThingDefEntity>
             thingDef.PropertyDef5 = new PropertyDefEntity
             {
                 Name = propertyDef.Name,
-                Type = propertyDef.PropertyType
+                Type = propertyDef.Type
             };
         }
         else
@@ -200,7 +200,7 @@ internal class ThingDefsStore : IThingDefsStore<ThingDefEntity>
     public Task<PropertyDef?> GetPropertyDef5Async(ThingDefEntity thingDef, CancellationToken cancellationToken)
     {
         var prop = thingDef.PropertyDef5;
-        var retval = prop is not null ? new PropertyDef { Name = prop.Name, PropertyType = prop.Type } : null;
+        var retval = prop is not null ? new PropertyDef { Name = prop.Name, Type = prop.Type } : null;
         return Task.FromResult(retval);
     }
 }

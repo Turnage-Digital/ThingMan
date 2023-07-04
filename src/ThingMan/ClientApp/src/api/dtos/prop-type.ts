@@ -1,6 +1,6 @@
 export enum PropType {
-  Text,
-  Number,
-  Date,
-  Boolean,
+    Text,
+    Number,
+    Date,
+    Boolean,
 }

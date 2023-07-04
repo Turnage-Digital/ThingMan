@@ -1,36 +1,49 @@
-using ThingMan.Core.Entities;
+using MediatR;
+using ThingMan.Core;
+using ThingMan.Core.ValueObjects;
 using ThingMan.Domain.Events;
 
 namespace ThingMan.Domain;
 
-public class ThingDefAggregate : ThingDef, IAggregate
+public class ThingDefAggregate<TThingDef>
+    where TThingDef : IWritableThingDef
 {
-    public static ThingDefAggregate Create(
+    private readonly IMediator _mediator;
+    private readonly IThingDefsStore<TThingDef> _store;
+    private readonly IUserContext _userContext;
+
+    public ThingDefAggregate(IThingDefsStore<TThingDef> store, IMediator mediator, IUserContext userContext)
+    {
+        _store = store;
+        _mediator = mediator;
+        _userContext = userContext;
+    }
+
+    public async Task<TThingDef> CreateAsync(
         string name,
-        string userId,
-        ICollection<StatusDef> statusDefs,
-        ICollection<NotificationDef> notificationDefs,
+        StatusDef[] statusDefs,
         PropertyDef? propertyDef1 = null,
         PropertyDef? propertyDef2 = null,
         PropertyDef? propertyDef3 = null,
         PropertyDef? propertyDef4 = null,
-        PropertyDef? propertyDef5 = null
+        PropertyDef? propertyDef5 = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var retval = new ThingDefAggregate
-        {
-            Name = name,
-            UserId = userId,
-            StatusDefs = statusDefs,
-            NotificationDefs = notificationDefs,
-            PropertyDef1 = propertyDef1,
-            PropertyDef2 = propertyDef2,
-            PropertyDef3 = propertyDef3,
-            PropertyDef4 = propertyDef4,
-            PropertyDef5 = propertyDef5
-        };
+        var retval = await _store.InitAsync(cancellationToken);
 
-        retval.AddEvent(new ThingDefCreatedEvent { ThingDefAggregate = retval });
+        await _store.SetNameAsync(retval, name, cancellationToken);
+        await _store.SetStatusDefsAsync(retval, statusDefs, cancellationToken);
+        await _store.SetPropertyDef1Async(retval, propertyDef1, cancellationToken);
+        await _store.SetPropertyDef2Async(retval, propertyDef2, cancellationToken);
+        await _store.SetPropertyDef3Async(retval, propertyDef3, cancellationToken);
+        await _store.SetPropertyDef4Async(retval, propertyDef4, cancellationToken);
+        await _store.SetPropertyDef5Async(retval, propertyDef5, cancellationToken);
+
+        await _store.CreateAsync(retval, cancellationToken);
+
+        await _mediator.Publish(new ThingDefCreatedEvent { Id = retval.Id, UserId = _userContext.UserId },
+            cancellationToken);
 
         return retval;
     }

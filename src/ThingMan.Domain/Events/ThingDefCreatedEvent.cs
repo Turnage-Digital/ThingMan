@@ -1,10 +1,10 @@
 using MediatR;
-using Newtonsoft.Json;
 
 namespace ThingMan.Domain.Events;
 
 public class ThingDefCreatedEvent : INotification
 {
-    [JsonProperty("thingDef")]
-    public ThingDefAggregate ThingDefAggregate { get; set; } = null!;
+    public string Id { get; set; } = null!;
+
+    public string UserId { get; set; } = null!;
 }

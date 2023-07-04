@@ -3,11 +3,12 @@ using Serilog;
 
 namespace ThingMan.Domain.Events;
 
-internal class ThingDefCreatedEventHandler : INotificationHandler<ThingDefCreatedEvent>
+public class ThingDefCreatedEventHandler : INotificationHandler<ThingDefCreatedEvent>
 {
-    public Task Handle(ThingDefCreatedEvent notification, CancellationToken cancellationToken)
+    public Task Handle(ThingDefCreatedEvent notification, CancellationToken cancellationToken = default)
     {
-        Log.Information("Received event: {Event}", nameof(notification));
+        Log.Information("ThingDefCreatedEvent: {Id} {UserId}",
+            notification.Id, notification.UserId);
         return Task.CompletedTask;
     }
 }

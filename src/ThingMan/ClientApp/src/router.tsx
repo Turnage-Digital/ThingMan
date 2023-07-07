@@ -16,7 +16,6 @@ const router = createBrowserRouter(
       <Route element={<HomePage />} index />
       <Route path="thing-defs">
         <Route element={<ThingDefsPage />} index />
-        <Route path="create" element={<CreateThingDefPage />} />
       </Route>
     </Route>
   )

@@ -21,7 +21,7 @@ const SignInForm: FC = () => {
     const username = data.get("username")?.toString();
     const password = data.get("password")?.toString();
 
-    if (username && password && signIn) {
+    if (username && password) {
       await signIn(username, password);
     }
   };
@@ -31,7 +31,7 @@ const SignInForm: FC = () => {
       <Stack spacing={2} alignItems="center">
         <Typography variant="h5">Sign in</Typography>
 
-        <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
+        <Box component="form" onSubmit={handleSubmit}>
           <TextField
             margin="normal"
             required

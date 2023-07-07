@@ -4,7 +4,7 @@ using Serilog;
 
 namespace ThingMan.Application.SqlDB;
 
-public class SeedData
+internal class SeedData
 {
     public static void EnsureSeedData(WebApplication app)
     {

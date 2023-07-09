@@ -55,14 +55,14 @@ const CreateThingDefPage = ({ onClose }: Props) => {
         </IconButton>
       </Box>
 
-      <Stack spacing={4} sx={{ p: 2 }}>
+      <Stack spacing={4} sx={{ px: 2 }}>
         <TextField
           margin="normal"
           required
           fullWidth
           name="name"
           id="name"
-          label="Name your Thing"
+          label="Name Your Thing"
         />
 
         <Divider />
@@ -74,11 +74,11 @@ const CreateThingDefPage = ({ onClose }: Props) => {
         sx={(theme) => ({
           position: "absolute",
           bottom: 0,
-          backgroundColor: theme.palette.background.default,
           width: "100%",
           padding: 2,
           borderTop: 1,
           borderColor: theme.palette.divider,
+          backgroundColor: theme.palette.background.default,
           display: "flex",
           justifyContent: "flex-end",
         })}
